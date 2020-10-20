@@ -19,7 +19,7 @@ QCLS: Cluster Expansion Based Solver for Open Quantum System
 
 ### Setup
 
-#### Installing manually
+#### Install manually
 
 Run the following code under the path `./cluster_py`
 
@@ -68,6 +68,7 @@ Using `QCLS` is quite similar to using the `mesolve` in `QuTip`, a quite simple 
 The following code shows how to use `QCLS` to simulate the *Janes-Cumming model*. (See also the same title notebooks from *Quantum mechanics lectures with QuTiP*)
 
 The Hamiltonian can be express as
+
 $$
 \hat{H}=\hbar\omega_c \hat{a}^\dagger \hat{a}+\frac{1}{2}\hbar\omega_a \hat{\sigma}_z+\hbar g(\hat{a}^\dagger \hat{\sigma}_-+\hat{a}\hat{\sigma}_+),
 $$
@@ -89,7 +90,7 @@ psi0=[0,1]
 T_o =[’Aa ’,’Bb ’]
 
 #Derive the equations under the expanson order of 2
-data = QCLData . Data ( Hamilton ,Co_ps , T_o , 2)
+data = QCLData.Data ( Hamilton ,Co_ps , T_o , 2)
 
 #Evolve the system (We are using the ODE solver `solve_vip` from scipy, thus the parameters and the output forms are almost identity  )
 sol = QCLS.Solve (data , [0,1], (0,25), t_eval = tlist )
