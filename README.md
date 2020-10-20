@@ -284,7 +284,7 @@ axes.set_ylabel('Occupation probability')
       y0=data.GetCurrentValue()
       n=int((t_range[1]-t_range[0])//pace)
       tlist=np.linspace(t_range[0],t_range[1],n)
-    y=np.zeros([len(y0),n],dtype=complex)
+      y=np.zeros([len(y0),n],dtype=complex)
       for i in range(0,len(y0)):
         y[i,0]=y0[i]
       for i in range(1,n):
@@ -312,6 +312,6 @@ axes.set_ylabel('Occupation probability')
 
 * See also the published paper *QCLS_ A cluster-expansion based effective solver for medium coupling quantum non-linear optical systems*
 
-* If your are interesting in the implement, check up the *ImplementDetail* pdfs.
+* If your are interesting in the implement, check up the *ImplementDetail* pdfs. (Warm prompt: those files are so messy and suck.)
 
 
