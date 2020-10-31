@@ -16,7 +16,7 @@ namespace ayaji {
 		static Label maxLabel(const LabelSeq& seq);
 
 		/// <summary>
-		/// 共轭一个single算符
+		/// 鍏辫江涓�涓猻ingle绠楃
 		/// </summary>
 		/// <param name="seq"></param>
 		/// <returns></returns>

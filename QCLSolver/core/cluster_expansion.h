@@ -1,10 +1,10 @@
 /**
- * @ ÎÄ¼şÃû: cluster_expansion.h
- * @ ¹¦ÄÜ: ÉùÃ÷ÓëCEÓĞ¹ØµÄº¯Êı
- * @ ×÷Õß: AyajiLin & YesunHuang
- * @ ÓÊÏä: 493987054@qq.com & 944812203@qq.com
+ * @ æ–‡ä»¶å: cluster_expansion.h
+ * @ åŠŸèƒ½: å£°æ˜ä¸CEæœ‰å…³çš„å‡½æ•°
+ * @ ä½œè€…: AyajiLin & YesunHuang
+ * @ é‚®ç®±: 493987054@qq.com & 944812203@qq.com
  * @ github: https://github.com/leonardodalinky & https://github.com/yesunhuang
- * @ ÈÕÆÚ: 06/24/2020
+ * @ æ—¥æœŸ: 06/24/2020
  *
  */
 #pragma once
@@ -47,25 +47,25 @@ namespace ayaji {
 		/// <returns>if succeed, return 0; else return non-zero.</returns>
 		static int BTToCEBT(OPTree& tree);
 		/// <summary>
-		/// ¶ÔÓ¦ÂÛÎÄÖĞµÄstep1,2,3
+		/// å¯¹åº”è®ºæ–‡ä¸­çš„step1,2,3
 		/// </summary>
 		/// <param name="nowi">nowi</param>
 		/// <param name="N">N</param>
-		/// <param name="prevIndex">ÏÂÒ»¸öÓÃÓÚbufÖĞµÄË÷ÒıºÅ</param>
-		/// <param name="alCount">ÒÑ¾­ÓÃ¹ıµÄÊıÄ¿</param>
-		/// <param name="buf">»º´æÇø</param>
-		/// <param name="outTree">½á¹û</param>
-		/// <returns>³É¹¦Ê±,·µ»ØÖµÎª0; ·ñÔò,·µ»ØÖµÎª·Ç0.</returns>
+		/// <param name="prevIndex">ä¸‹ä¸€ä¸ªç”¨äºbufä¸­çš„ç´¢å¼•å·</param>
+		/// <param name="alCount">å·²ç»ç”¨è¿‡çš„æ•°ç›®</param>
+		/// <param name="buf">ç¼“å­˜åŒº</param>
+		/// <param name="outTree">ç»“æœ</param>
+		/// <returns>æˆåŠŸæ—¶,è¿”å›å€¼ä¸º0; å¦åˆ™,è¿”å›å€¼ä¸ºé0.</returns>
 		static int _DT(int nowi, int N, int prevIndex, int alCount, Label* buf, OPTree& outTree);
 		/// <summary>
-		/// ½«BÊ÷×ªÎªCEÖĞµÄBÊ÷
+		/// å°†Bæ ‘è½¬ä¸ºCEä¸­çš„Bæ ‘
 		/// </summary>
 		/// <param name="node"></param>
 		/// <param name="tree"></param>
 		/// <returns></returns>
 		static int _BTToCEBT(pNode& node, OPTree& tree);
 		/// <summary>
-		/// ½«Ã¿¸ö½áµãµÄvalueÈ¡·´
+		/// å°†æ¯ä¸ªç»“ç‚¹çš„valueå–å
 		/// </summary>
 		/// <param name="node"></param>
 		/// <param name="sth">nothing</param>

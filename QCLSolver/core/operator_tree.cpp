@@ -54,7 +54,7 @@ namespace ayaji {
 			// int arrlen = len - 2 * i;
 			if (buf[i] != 0) {
 				if (2 * i == len) {
-					/* 0´ÎÏî */
+					/* 0æ¬¡é¡¹ */
 					tempbuf[0] = 0;
 					tempv.setReal(buf[i]);
 					LabelSeq s;
@@ -75,16 +75,16 @@ namespace ayaji {
 	}
 
 	OPTree OPTree::MONormalize(const LabelSeq& seq_in) {
-		/* Ä¬ÈÏÊäÈë·ûºÏ¸ñÊ½,¼´ÎŞ0 */
+		/* é»˜è®¤è¾“å…¥ç¬¦åˆæ ¼å¼,å³æ— 0 */
 		LabelSeq seq(seq_in);
 		_SortMOArray(seq);
 		int len = seq.size();
 		int csize = Common::maxLabel(seq);
-		/* mÎªÒ»¸ömodeµÄÏµµ× */
+		/* mä¸ºä¸€ä¸ªmodeçš„ç³»åº• */
 		OPTree ret;
 		Label m = (seq[0] + 1) / 2;
 		int start = 0, end = 0;
-		/* È·¶¨µÚÒ»¿Ã */
+		/* ç¡®å®šç¬¬ä¸€æ£µ */
 		for (; end < len; ++end) {
 			if (end == len - 1) {
 				ret = SONormalize(seq);
@@ -99,7 +99,7 @@ namespace ayaji {
 				break;
 			}
 		}
-		/* ºóĞøµÄ³ËÊ÷ */
+		/* åç»­çš„ä¹˜æ ‘ */
 		while (1) {
 			if (end == len - 1) {
 				LabelSeq t(end - start + 1);
@@ -413,8 +413,8 @@ namespace ayaji {
 	}
 
 	int OPTree::_SortMOArray(LabelSeq& seq) {
-		/* Ã°ÅİÅÅĞò,¿Éstable */
-		/* Ä¬ÈÏÊäÈëÃÃÓĞ0,ÇÒ·ûºÏ¸ñÊ½ */
+		/* å†’æ³¡æ’åº,å¯stable */
+		/* é»˜è®¤è¾“å…¥å¦¹æœ‰0,ä¸”ç¬¦åˆæ ¼å¼ */
 		int len = seq.size();
 		int lastChange = 0;
 		int isChange = 1;
@@ -503,11 +503,11 @@ namespace ayaji {
 		int len = seq.size();
 		for (int i = 0; i <= posCsize; ++i) {
 			if (posNode->children[i] != nullptr) {
-				/* ²»ÔÊĞíÎ»ÖÃÊ÷Ö¸Ïòoperator²»´æÔÚµÄÎ»ÖÃ */
+				/* ä¸å…è®¸ä½ç½®æ ‘æŒ‡å‘operatorä¸å­˜åœ¨çš„ä½ç½® */
 				if (posNode->children[i]->label > len)
 					return 0;
 				Label nextChild = (posNode->children[i]->label == 0) ? 0 : seq[posNode->children[i]->label - 1];
-				/* ÅĞ¶Ï¸Ã×Ó½ÚµãÊÇ·ñÒÑ¾­½¨Á¢ */
+				/* åˆ¤æ–­è¯¥å­èŠ‚ç‚¹æ˜¯å¦å·²ç»å»ºç«‹ */
 				if (opNode->children[nextChild] == nullptr) {
 					Complex tempv;
 					opNode->children[nextChild] = Node::createNode(opCsize, nextChild, tempv, opNode);

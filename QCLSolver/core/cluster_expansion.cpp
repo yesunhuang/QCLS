@@ -77,7 +77,7 @@ namespace ayaji {
 			Label buf2[MAX_LABEL_BUFFER_SIZE];
 			memset(buf2, 0, MAX_LABEL_BUFFER_SIZE * sizeof(Label));
 
-			/* ¹¹½¨{i}ºÍ<N-i> */
+			/* æž„å»º{i}å’Œ<N-i> */
 			for (int i = 0; i < nowi; ++i) {
 				buf2[buf[i]] = 1;
 			}

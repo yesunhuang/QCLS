@@ -52,7 +52,7 @@ namespace ayaji {
 			}
 		}
 
-		/* ´¦ÀíÊ£ÏÂµÄ½áµã */
+		/* å¤„ç†å‰©ä¸‹çš„ç»“ç‚¹ */
 		if (nowIndex1 == len1 && nowIndex2 == len2) {
 			// do nothing
 		}

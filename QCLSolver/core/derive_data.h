@@ -1,10 +1,10 @@
 /**
- * @ ÎÄ¼şÃû: derive_data.h
- * @ ¹¦ÄÜ: ÉùÃ÷ÓĞ¹ØDeriveDataµÄ¹¦ÄÜ
- * @ ×÷Õß: AyajiLin & YesunHuang
- * @ ÓÊÏä: 493987054@qq.com & 944812203@qq.com
+ * @ æ–‡ä»¶å: derive_data.h
+ * @ åŠŸèƒ½: å£°æ˜æœ‰å…³DeriveDataçš„åŠŸèƒ½
+ * @ ä½œè€…: AyajiLin & YesunHuang
+ * @ é‚®ç®±: 493987054@qq.com & 944812203@qq.com
  * @ github: https://github.com/leonardodalinky & https://github.com/yesunhuang
- * @ ÈÕÆÚ: 06/24/2020
+ * @ æ—¥æœŸ: 06/24/2020
  *
  */
 #pragma once
@@ -46,29 +46,29 @@ namespace ayaji {
 
 		// imperative method
 		/// <summary>
-		/// ¶ÔÓ¦µÚËÄÕÂµÄInitialValue²Ù×÷¡£Ä¬ÈÏÊäÈëÎªºÏ·¨¡£Áã´ÎÏîÊä³ö1¡£
-		/// sArr[0]¶ÔÓ¦{1,2}µÄ³õÖµ,sArr[1]¶ÔÓ¦{3,4}µÄ³õÖµ......ÒÔ´ËÀàÍÆ¡£
+		/// å¯¹åº”ç¬¬å››ç« çš„InitialValueæ“ä½œã€‚é»˜è®¤è¾“å…¥ä¸ºåˆæ³•ã€‚é›¶æ¬¡é¡¹è¾“å‡º1ã€‚
+		/// sArr[0]å¯¹åº”{1,2}çš„åˆå€¼,sArr[1]å¯¹åº”{3,4}çš„åˆå€¼......ä»¥æ­¤ç±»æ¨ã€‚
 		/// </summary>
-		/// <param name="seq">operatorÊı×é±í´ï</param>
-		/// <param name="sseq">³õÌ¬Êı×é</param>
+		/// <param name="seq">operatoræ•°ç»„è¡¨è¾¾</param>
+		/// <param name="sseq">åˆæ€æ•°ç»„</param>
 		/// <returns></returns>
 		static Complex initialValue(const LabelSeq& seq, const LabelSeq& sseq);
 		/// <summary>
-		/// ¶ÔÓ¦µÚËÄÕÂµÄEvolution²Ù×÷, µ«ÊÇroot->value²»±ä, ¸ùÖĞµÄÏµÊıÓÉÍâ²¿¸Ä±ä¡£
+		/// å¯¹åº”ç¬¬å››ç« çš„Evolutionæ“ä½œ, ä½†æ˜¯root->valueä¸å˜, æ ¹ä¸­çš„ç³»æ•°ç”±å¤–éƒ¨æ”¹å˜ã€‚
 		/// </summary>
-		/// <param name="inputSeq_HO">ÓÃ»§ÊäÈëµÄhamilton operatorµÄÁĞ±í</param>
-		/// <param name="inputSeqCoef_HO">ÓÃ»§ÊäÈëµÄhamilton operatorµÄÁĞ±í¶ÔÓ¦µÄÏµÊı</param>
-		/// <param name="inputSeq_CO">ÓÃ»§ÊäÈëµÄhamilton operatorµÄÁĞ±í</param>
-		/// <param name="inputSeqCoef_CO">ÓÃ»§ÊäÈëµÄhamilton operatorµÄÁĞ±í¶ÔÓ¦µÄÏµÊı</param>
-		/// <param name="userSeq">ÓÃ»§ÌØ¶¨µÄop</param>
-		/// <param name="maxOPLen">×î´óoperator³¤¶È</param>
-		/// <returns>Êä³öµÄhoÊ÷ºÍcoÊ÷Êı×é</returns>
+		/// <param name="inputSeq_HO">ç”¨æˆ·è¾“å…¥çš„hamilton operatorçš„åˆ—è¡¨</param>
+		/// <param name="inputSeqCoef_HO">ç”¨æˆ·è¾“å…¥çš„hamilton operatorçš„åˆ—è¡¨å¯¹åº”çš„ç³»æ•°</param>
+		/// <param name="inputSeq_CO">ç”¨æˆ·è¾“å…¥çš„hamilton operatorçš„åˆ—è¡¨</param>
+		/// <param name="inputSeqCoef_CO">ç”¨æˆ·è¾“å…¥çš„hamilton operatorçš„åˆ—è¡¨å¯¹åº”çš„ç³»æ•°</param>
+		/// <param name="userSeq">ç”¨æˆ·ç‰¹å®šçš„op</param>
+		/// <param name="maxOPLen">æœ€å¤§operatoré•¿åº¦</param>
+		/// <returns>è¾“å‡ºçš„hoæ ‘å’Œcoæ ‘æ•°ç»„</returns>
 		static std::pair<std::vector<OPTree>, std::vector<OPTree>>
 			evolution(const std::vector<LabelSeq>& inputSeq_HO, const std::vector<Complex>& inputSeqCoef_HO,
 				const std::vector<LabelSeq>& inputSeq_CO, const std::vector<Complex>& inputSeqCoef_CO,
 				const LabelSeq& userSeq, int maxOPLen);
 		/// <summary>
-		/// ¶ÔÓ¦µÚËÄÕÂÖĞµÄDerive And Assign¹ı³Ì
+		/// å¯¹åº”ç¬¬å››ç« ä¸­çš„Derive And Assignè¿‡ç¨‹
 		/// </summary>
 		/// <param name="inputSeq_HO"></param>
 		/// <param name="inputSeqCoef_HO"></param>
@@ -77,7 +77,7 @@ namespace ayaji {
 		/// <param name="inputSeq_Init"></param>
 		/// <param name="inputSeq_Track"></param>
 		/// <param name="maxOPLen"></param>
-		/// <returns>Éú³ÉÒ»¸öĞÂµÄdata</returns>
+		/// <returns>ç”Ÿæˆä¸€ä¸ªæ–°çš„data</returns>
 		static DeriveData deriveAssign(const std::vector<LabelSeq>& inputSeq_HO, const std::vector<Complex>& inputSeqCoef_HO,
 			const std::vector<LabelSeq>& inputSeq_CO, const std::vector<Complex>& inputSeqCoef_CO,
 			const LabelSeq& inputSeq_Init, const std::vector<LabelSeq>& inputSeq_Track,
@@ -87,7 +87,7 @@ namespace ayaji {
 			const LabelSeq& inputSeq_Init, const std::vector<LabelSeq>& inputSeq_Track,
 			int maxOPLen);
 		/// <summary>
-		/// ¶ÔÓ¦µÚËÄÕÂÖĞµÄCalculate Evolution¹ı³Ì
+		/// å¯¹åº”ç¬¬å››ç« ä¸­çš„Calculate Evolutionè¿‡ç¨‹
 		/// </summary>
 		/// <returns></returns>
 		std::vector<Complex> calEvolution();
@@ -103,7 +103,7 @@ namespace ayaji {
 
 	public:
 		/// <summary>
-		/// Çø·ÖcalEvolution¹ı³ÌÖĞÊÇH¹ı³Ì»¹ÊÇC¹ı³Ì
+		/// åŒºåˆ†calEvolutionè¿‡ç¨‹ä¸­æ˜¯Hè¿‡ç¨‹è¿˜æ˜¯Cè¿‡ç¨‹
 		/// </summary>
 		enum class CalEvolutionType {
 			// hamilton
@@ -118,15 +118,15 @@ namespace ayaji {
 			const LabelSeq& userSeq, int maxOPLen);
 
 		/// <summary>
-		/// É¾³ıÊ÷ÖĞµÚÒ»¸öÓöµ½µÄ³¤¶È´óÓÚmaxOPLenµÄoperator
-		/// TODO: ´Ë´¦µÄ³Ë·¨£¬¿ÉÒÔ·Ö³É¸ü´óÒ»¿éµÄOperatorÔÙ½øĞĞÏà³Ë£¬ÒÔ¼Ó¿ì
+		/// åˆ é™¤æ ‘ä¸­ç¬¬ä¸€ä¸ªé‡åˆ°çš„é•¿åº¦å¤§äºmaxOPLençš„operator
+		/// TODO: æ­¤å¤„çš„ä¹˜æ³•ï¼Œå¯ä»¥åˆ†æˆæ›´å¤§ä¸€å—çš„Operatorå†è¿›è¡Œç›¸ä¹˜ï¼Œä»¥åŠ å¿«
 		/// </summary>
 		/// <param name="tree">operator tree</param>
-		/// <param name="maxOPLen">operator×î´ó³¤¶È</param>
-		/// <returns>Èô´æÔÚÉ¾³ı²¢³É¹¦Ê±,·µ»ØÖµÎª1; ·ñÔò,·µ»ØÖµÎª0.</returns>
+		/// <param name="maxOPLen">operatoræœ€å¤§é•¿åº¦</param>
+		/// <returns>è‹¥å­˜åœ¨åˆ é™¤å¹¶æˆåŠŸæ—¶,è¿”å›å€¼ä¸º1; å¦åˆ™,è¿”å›å€¼ä¸º0.</returns>
 		static int _DeleteAndCE(OPTree& tree, int maxOPLen);
 		/// <summary>
-		/// »ñµÃ³¤¶È´óÓÚmaxOPLenµÄoperatorµÄÆğÊ¼index
+		/// è·å¾—é•¿åº¦å¤§äºmaxOPLençš„operatorçš„èµ·å§‹index
 		/// </summary>
 		/// <param name="seq"></param>
 		/// <param name="maxOPLen"></param>
@@ -135,24 +135,24 @@ namespace ayaji {
 
 
 		/// <summary>
-		/// ²ğ·ÖÊ÷ÖĞµÄsingle operator,²¢¼ÓÈëdata
+		/// æ‹†åˆ†æ ‘ä¸­çš„single operator,å¹¶åŠ å…¥data
 		/// </summary>
-		/// <param name="evoTree">´ı²ğ·ÖµÄevolutionÊ÷</param>
+		/// <param name="evoTree">å¾…æ‹†åˆ†çš„evolutionæ ‘</param>
 		/// <param name="inputSeq_Init"></param>
 		/// <param name="data"></param>
-		/// <returns>Èô´æÔÚÉ¾³ı²¢³É¹¦Ê±,·µ»ØÖµÎª1; ·ñÔò,·µ»ØÖµÎª0.</returns>
+		/// <returns>è‹¥å­˜åœ¨åˆ é™¤å¹¶æˆåŠŸæ—¶,è¿”å›å€¼ä¸º1; å¦åˆ™,è¿”å›å€¼ä¸º0.</returns>
 		static int _DeriveAT(OPTree& evoTree, const LabelSeq& inputSeq_Init, DeriveData& data);
 		/// <summary>
-		/// Ñ°ÕÒtrackingÊ÷ÖĞÊÇ·ñÓĞÕâÒ»Ïî»òÕßÆä¹²éîÏî¡£
-		/// seq±ØĞëÎªsingle operator£¬ÇÒÒÑ¾­ÅÅºÃĞò¡£
+		/// å¯»æ‰¾trackingæ ‘ä¸­æ˜¯å¦æœ‰è¿™ä¸€é¡¹æˆ–è€…å…¶å…±è½­é¡¹ã€‚
+		/// seqå¿…é¡»ä¸ºsingle operatorï¼Œä¸”å·²ç»æ’å¥½åºã€‚
 		/// </summary>
 		/// <param name="data"></param>
 		/// <param name="seq"></param>
 		/// <returns></returns>
 		static bool _DeriveIsFind(DeriveData& data, const LabelSeq& seq);
 		/// <summary>
-		/// TODO: ÕâÀïÓĞÖØ¸´¼ÆËã³õÖµµÄÏÓÒÉ¡£
-		/// °Ñtracking treeÖĞ½áµãµÄvalueÉèÎªÆäcurrent value
+		/// TODO: è¿™é‡Œæœ‰é‡å¤è®¡ç®—åˆå€¼çš„å«Œç–‘ã€‚
+		/// æŠŠtracking treeä¸­ç»“ç‚¹çš„valueè®¾ä¸ºå…¶current value
 		/// </summary>
 		/// <param name="data"></param>
 		/// <returns></returns>

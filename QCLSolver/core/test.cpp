@@ -8,6 +8,7 @@
 
 //#include <crtdbg.h>
 
+
 using namespace ayaji;
 
 int main() {

@@ -1,10 +1,10 @@
 /**
- * @ ÎÄ¼şÃû: derive_data.cpp
- * @ ¹¦ÄÜ: ÊµÏÖÓĞ¹ØDeriveDataµÄ¹¦ÄÜ
- * @ ×÷Õß: AyajiLin & YesunHuang
- * @ ÓÊÏä: 493987054@qq.com & 944812203@qq.com
+ * @ æ–‡ä»¶å: derive_data.cpp
+ * @ åŠŸèƒ½: å®ç°æœ‰å…³DeriveDataçš„åŠŸèƒ½
+ * @ ä½œè€…: AyajiLin & YesunHuang
+ * @ é‚®ç®±: 493987054@qq.com & 944812203@qq.com
  * @ github: https://github.com/leonardodalinky & https://github.com/yesunhuang
- * @ ÈÕÆÚ: 06/24/2020
+ * @ æ—¥æœŸ: 06/24/2020
  *
  */
 #include "derive_data.h"
@@ -53,7 +53,7 @@ namespace ayaji {
 		}
 
 		curValues[this->size] = c;
-		// ´Ë´¦×¢Òâ
+		// æ­¤å¤„æ³¨æ„
 		//for (int i = 0; i < data->hoSize; ++i)
 		//	data->evoTrees_HO[data->size][i] = NULL;
 		//for (int i = 0; i < data->coSize; ++i)
@@ -101,30 +101,30 @@ namespace ayaji {
 
 		int dagger = -1, normal = -1;
 		int nextIndex = -1;
-		/* n±íÊ¾creation operatorµÄÊıÄ¿,¼´daggerµÄÊıÄ¿ */
-		/* m±íÊ¾anihilation operatorµÄÊıÄ¿,¼´normalµÄÊıÄ¿ */
+		/* nè¡¨ç¤ºcreation operatorçš„æ•°ç›®,å³daggerçš„æ•°ç›® */
+		/* mè¡¨ç¤ºanihilation operatorçš„æ•°ç›®,å³normalçš„æ•°ç›® */
 		int n = 0, m = 0;
 		double ans = 1;
 		int state = 0;
 		while (state != -1) {
 			switch (state) {
 			case -1:
-				/* ×´Ì¬-1: ÍË³ö×´Ì¬ */
+				/* çŠ¶æ€-1: é€€å‡ºçŠ¶æ€ */
 				break;
 			case 0:
-				/* ×´Ì¬0: ³õÊ¼»¯ */
+				/* çŠ¶æ€0: åˆå§‹åŒ– */
 				nextIndex = 0;
 				state = 1;
 				break;
 			case 1:
-				/* ×´Ì¬1: ¸ü¸ÄdaggerºÍnormal */
+				/* çŠ¶æ€1: æ›´æ”¹daggerå’Œnormal */
 				n = m = 0;
 				normal = ((seq[nextIndex] + 1) / 2) * 2;
 				dagger = normal - 1;
 				state = 2;
 				break;
 			case 2:
-				/* ×´Ì¬2: ¿ªÊ¼±éÀúÍ¬Ò»¿é */
+				/* çŠ¶æ€2: å¼€å§‹éå†åŒä¸€å— */
 				if (nextIndex >= len) {
 					state = 3;
 				}
@@ -141,7 +141,7 @@ namespace ayaji {
 				}
 				break;
 			case 3:
-				/* ×´Ì¬3: Í³¼ÆnºÍm,¸üĞÂans */
+				/* çŠ¶æ€3: ç»Ÿè®¡nå’Œm,æ›´æ–°ans */
 			{
 				if (n != m) {
 					ans = 0;
@@ -189,7 +189,7 @@ namespace ayaji {
 		const std::vector<LabelSeq>& inputSeq_CO, const std::vector<Complex>& inputSeqCoef_CO, 
 		const LabelSeq& inputSeq_Init, const std::vector<LabelSeq>& inputSeq_Track, int maxOPLen) {
 
-		/* Ê×ÏÈÈ·¶¨csize,²¢´´½¨dataÊµÌå */
+		/* é¦–å…ˆç¡®å®šcsize,å¹¶åˆ›å»ºdataå®ä½“ */
 		Label maxInitTrackLabel = 0;
 		for (int i = 0; i < inputSeq_Track.size(); ++i) {
 			for (int j = 0; j < inputSeq_Track[i].size(); ++j) {
@@ -198,7 +198,7 @@ namespace ayaji {
 		}
 		DeriveData output(2, maxInitTrackLabel, inputSeq_HO.size(), inputSeq_CO.size());
 
-		/* ³õÊ¼¼ÓÈëtracking operator, ²¢Í¬Ê±¼ÆËãinitial value */
+		/* åˆå§‹åŠ å…¥tracking operator, å¹¶åŒæ—¶è®¡ç®—initial value */
 		for (int i = 0; i < inputSeq_Track.size(); ++i) {
 			Complex tempc = { 1,0 };
 			output.insert(inputSeq_Track[i], tempc);
@@ -206,7 +206,7 @@ namespace ayaji {
 			output.curValues[i] = tempc2;
 		}
 
-		/* deriveµÄ¹ı³Ì */
+		/* deriveçš„è¿‡ç¨‹ */
 		LabelSeq nowIndexSeq;
 		for (int index = 0; index < output.size; ++index) {
 			nowIndexSeq = (*output.trackNodes[index]).seqFromRoot();
@@ -225,7 +225,7 @@ namespace ayaji {
 			}
 		}
 
-		/* ÉèÖÃÏµÊıµÄ¹ı³Ì */
+		/* è®¾ç½®ç³»æ•°çš„è¿‡ç¨‹ */
 		for (int i = 0; i < inputSeq_HO.size(); ++i) {
 			Complex temp = { 0, 1 };
 			temp *= inputSeqCoef_HO[i];
@@ -237,7 +237,7 @@ namespace ayaji {
 			output.coCoefs[i] = temp;
 		}
 
-		/* °ÑtrackValueTreeÖĞ½áµãµÄvalueÉèÎªÆäcurrent value */
+		/* æŠŠtrackValueTreeä¸­ç»“ç‚¹çš„valueè®¾ä¸ºå…¶current value */
 		_UpdateDDTTreeValue(output);
 
 		return std::move(output);
@@ -248,7 +248,7 @@ namespace ayaji {
 		const std::vector<LabelSeq>& inputSeq_CO, const std::vector<Complex>& inputSeqCoef_CO,
 		const LabelSeq& inputSeq_Init, const std::vector<LabelSeq>& inputSeq_Track, int maxOPLen) {
 
-		/* Ê×ÏÈÈ·¶¨csize,²¢´´½¨dataÊµÌå */
+		/* é¦–å…ˆç¡®å®šcsize,å¹¶åˆ›å»ºdataå®ä½“ */
 		Label maxInitTrackLabel = 0;
 		for (int i = 0; i < inputSeq_Track.size(); ++i) {
 			for (int j = 0; j < inputSeq_Track[i].size(); ++j) {
@@ -258,7 +258,7 @@ namespace ayaji {
 		DeriveData* poutput = new DeriveData(2, maxInitTrackLabel, inputSeq_HO.size(), inputSeq_CO.size());
 		DeriveData& output = *poutput;
 
-		/* ³õÊ¼¼ÓÈëtracking operator, ²¢Í¬Ê±¼ÆËãinitial value */
+		/* åˆå§‹åŠ å…¥tracking operator, å¹¶åŒæ—¶è®¡ç®—initial value */
 		for (int i = 0; i < inputSeq_Track.size(); ++i) {
 			Complex tempc = { 1,0 };
 			output.insert(inputSeq_Track[i], tempc);
@@ -266,7 +266,7 @@ namespace ayaji {
 			output.curValues[i] = tempc2;
 		}
 
-		/* deriveµÄ¹ı³Ì */
+		/* deriveçš„è¿‡ç¨‹ */
 		LabelSeq nowIndexSeq;
 		for (int index = 0; index < output.size; ++index) {
 			nowIndexSeq = (*output.trackNodes[index]).seqFromRoot();
@@ -285,7 +285,7 @@ namespace ayaji {
 			}
 		}
 
-		/* ÉèÖÃÏµÊıµÄ¹ı³Ì */
+		/* è®¾ç½®ç³»æ•°çš„è¿‡ç¨‹ */
 		for (int i = 0; i < inputSeq_HO.size(); ++i) {
 			Complex temp = { 0, 1 };
 			temp *= inputSeqCoef_HO[i];
@@ -297,7 +297,7 @@ namespace ayaji {
 			output.coCoefs[i] = temp;
 		}
 
-		/* °ÑtrackValueTreeÖĞ½áµãµÄvalueÉèÎªÆäcurrent value */
+		/* æŠŠtrackValueTreeä¸­ç»“ç‚¹çš„valueè®¾ä¸ºå…¶current value */
 		_UpdateDDTTreeValue(output);
 
 		return poutput;
@@ -305,7 +305,7 @@ namespace ayaji {
 
 
 	std::vector<Complex> DeriveData::calEvolution() {
-		/* ´´½¨Óëdata->sizeµÈ³¤µÄ¸´ÊıÊı×é */
+		/* åˆ›å»ºä¸data->sizeç­‰é•¿çš„å¤æ•°æ•°ç»„ */
 		std::vector<Complex> output(this->size, Complex(0, 0));
 
 		for (int i = 0; i < this->size; ++i) {
@@ -329,33 +329,33 @@ namespace ayaji {
 		const std::vector<Complex>& inputSeqCoef_HO, 
 		const LabelSeq& userSeq, int maxOPLen) 
 	{
-		/* ho²¿·Ö */
+		/* hoéƒ¨åˆ† */
 
 		LabelSeq buf;
 		int userSeqLen = userSeq.size();
 		std::vector<OPTree> ret;
 		for (int i = 0; i < inputSeq_HO.size(); ++i) {
-			/* ÏÈ¹¹Ôì<O_j A_i> */
+			/* å…ˆæ„é€ <O_j A_i> */
 			buf.clear();
 			buf.insert(buf.cend(), inputSeq_HO[i].cbegin(), inputSeq_HO[i].cend());
 			buf.insert(buf.cend(), userSeq.cbegin(), userSeq.cend());
 			OPTree OA_Tree = OPTree::MONormalize(buf);
 			//PrintOPTree(OA_Tree);
 
-			/* ÔÙ¹¹Ôì<A_i O_j> */
+			/* å†æ„é€ <A_i O_j> */
 			buf.clear();
 			buf.insert(buf.cend(), userSeq.cbegin(), userSeq.cend());
 			buf.insert(buf.cend(), inputSeq_HO[i].cbegin(), inputSeq_HO[i].cend());
 			OPTree AO_Tree = OPTree::MONormalize(buf);
 			//PrintOPTree(AO_Tree);
 
-			/* Á½Ê÷Ïà¼õ */
+			/* ä¸¤æ ‘ç›¸å‡ */
 			AO_Tree.eachNode(nullptr, ClusterExp::_NegateNode);
 			OA_Tree.add(AO_Tree);
 			//PrintOPTree(OA_Tree);
 
-			/* È¥³ı³¤¶È³¬¹ı·¶Î§µÄ */
-			/* TODO: Õâ¸ö·½·¨ºÜ´À,ÈÕºóĞèÒªÓÅ»¯ */
+			/* å»é™¤é•¿åº¦è¶…è¿‡èŒƒå›´çš„ */
+			/* TODO: è¿™ä¸ªæ–¹æ³•å¾ˆè ¢,æ—¥åéœ€è¦ä¼˜åŒ– */
 			while (_DeleteAndCE(OA_Tree, maxOPLen) == 1) {}
 
 			ret.push_back(OA_Tree);
@@ -367,7 +367,7 @@ namespace ayaji {
 		const std::vector<Complex>& inputSeqCoef_CO, 
 		const LabelSeq& userSeq, int maxOPLen)
 	{
-		/* co²¿·Ö */
+		/* coéƒ¨åˆ† */
 		//UINT_L dagger[MAX_OPERATOR_LENGTH];
 		//UINT_L buf[3 * MAX_OPERATOR_LENGTH];
 		LabelSeq dagger;
@@ -379,7 +379,7 @@ namespace ayaji {
 		std::vector<OPTree> ret;
 		ret.resize(inputSeqLen);
 		for (int i = 0; i < inputSeqLen; ++i) {
-			/* ÏÈ¹¹ÔìO_n^{\dagger} */
+			/* å…ˆæ„é€ O_n^{\dagger} */
 			dagger.clear();
 			int inputSeqLens = inputSeq_CO[i].size();
 			for (int j = 0; j < inputSeqLens; ++j) {
@@ -387,7 +387,7 @@ namespace ayaji {
 				dagger.push_back(t);
 			}
 
-			/* ÏÈ¹¹Ôì<O_n^{\dagger} A_i O_n> */
+			/* å…ˆæ„é€ <O_n^{\dagger} A_i O_n> */
 			buf.clear();
 			buf.insert(buf.cend(), dagger.cbegin(), dagger.cend());
 			buf.insert(buf.cend(), userSeq.cbegin(), userSeq.cend());
@@ -395,28 +395,28 @@ namespace ayaji {
 			OPTree OdAO_Tree = OPTree::MONormalize(buf);
 			OdAO_Tree.eachNode(&tempc, _multiplyNodeWithComplex);
 
-			/* ÔÙ¹¹Ôì<O_n^{\dagger} O_n A_i> */
+			/* å†æ„é€ <O_n^{\dagger} O_n A_i> */
 			buf.clear();
 			buf.insert(buf.cend(), dagger.cbegin(), dagger.cend());
 			buf.insert(buf.cend(), inputSeq_CO[i].cbegin(), inputSeq_CO[i].cend());
 			buf.insert(buf.cend(), userSeq.cbegin(), userSeq.cend());
 			OPTree OdOA_Tree = OPTree::MONormalize(buf);
 
-			/* ÔÙ¹¹Ôì<A_i O_n^{\dagger} O_n> */
+			/* å†æ„é€ <A_i O_n^{\dagger} O_n> */
 			buf.clear();
 			buf.insert(buf.cend(), userSeq.cbegin(), userSeq.cend());
 			buf.insert(buf.cend(), dagger.cbegin(), dagger.cend());
 			buf.insert(buf.cend(), inputSeq_CO[i].cbegin(), inputSeq_CO[i].cend());
 			OPTree AOdO_Tree = OPTree::MONormalize(buf);
 
-			/* ÈıÊ÷Ïà¼õ */
+			/* ä¸‰æ ‘ç›¸å‡ */
 			OdOA_Tree.eachNode(nullptr, ClusterExp::_NegateNode);
 			AOdO_Tree.eachNode(nullptr, ClusterExp::_NegateNode);
 			OdAO_Tree.add(OdOA_Tree);
 			OdAO_Tree.add(AOdO_Tree);
 
-			/* È¥³ı³¤¶È³¬¹ı·¶Î§µÄ */
-			/* TODO: Õâ¸ö·½·¨ºÜ´À,ÈÕºóĞèÒªÓÅ»¯ */
+			/* å»é™¤é•¿åº¦è¶…è¿‡èŒƒå›´çš„ */
+			/* TODO: è¿™ä¸ªæ–¹æ³•å¾ˆè ¢,æ—¥åéœ€è¦ä¼˜åŒ– */
 			while (_DeleteAndCE(OdAO_Tree, maxOPLen) == 1) {}
 
 			ret[i] = OdAO_Tree;
@@ -555,12 +555,12 @@ namespace ayaji {
 	}
 
 	bool DeriveData::_DeriveIsFind(DeriveData& data, const LabelSeq& seq) {
-		/* Ñ°ÕÒÔ­Ïî */
+		/* å¯»æ‰¾åŸé¡¹ */
 		pNode temp = data.trackTree.search(seq);
 		if (temp != nullptr && !temp->isZero()) {
 			return true;
 		}
-		/* Ñ°ÕÒ¹²éîÏî */
+		/* å¯»æ‰¾å…±è½­é¡¹ */
 		LabelSeq tempSeq = Common::barSeq(seq);
 		pNode temp2 = data.trackTree.search(tempSeq);
 		if (temp2 != nullptr && !temp2->isZero()) {
@@ -583,7 +583,7 @@ namespace ayaji {
 		for (auto it = evoTree.getIterator(); *it != nullptr; it.next()) {
 			LabelSeq seq = it.getCurLabelSeq();
 			if (seq[0] == 0) {
-				/* ÁãËã·û */
+				/* é›¶ç®—ç¬¦ */
 				switch (HorC)
 				{
 				case CalEvolutionType::H:
@@ -597,7 +597,7 @@ namespace ayaji {
 				}
 			}
 			else {
-				/* ÆäËûËã·û */
+				/* å…¶ä»–ç®—ç¬¦ */
 				__CalEvo(*it, evoTree, treeIndex, HorC, seq, sum);
 			}
 		}
@@ -630,7 +630,7 @@ namespace ayaji {
 				tempnodev = tempnode->value;
 			}
 			else {
-				/* daggerµÄ¹²éîÏÖÏó */
+				/* daggerçš„å…±è½­ç°è±¡ */
 				auto bar_seq = Common::barSeq(seq_segment);
 				tempnode = this->trackValueTree.search(bar_seq);
 				tempnodev = tempnode->value;
