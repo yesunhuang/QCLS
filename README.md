@@ -93,13 +93,13 @@ T_o =[’Aa ’,’Bb ’]
 data = QCLData.Data ( Hamilton ,Co_ps , T_o , 2)
 
 #Evolve the system (We are using the ODE solver `solve_vip` from scipy, thus the parameters and the output forms are almost identity  )
-sol = QCLS.Solve (data , [0,1], (0,25), t_eval = tlist )
+sol = QCLS.Solve (data , psi0, (0,25), t_eval = tlist )
 
 #Visualize the result via matplotlib
 fig, axes = plt.subplots(1, 1, figsize=(10,6))
 
-axes.plot(tlist, np.real(sol2.y[0]),color='red',linestyle='--',label="Cavity(QCLS)")
-axes.plot(tlist, np.real(sol2.y[1]),color='blue',linestyle='--',label="Atom excited state(QCLS)")
+axes.plot(tlist, np.real(sol.y[0]),color='red',linestyle='--',label="Cavity(QCLS)")
+axes.plot(tlist, np.real(sol.y[1]),color='blue',linestyle='--',label="Atom excited state(QCLS)")
 axes.legend(loc=0)
 axes.set_xlabel('Time')
 axes.set_ylabel('Occupation probability')
