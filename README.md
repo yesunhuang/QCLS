@@ -74,8 +74,15 @@ $$
 $$
 
 ```python
+#parameters
+wc = 1.0  * 2 * pi  # cavity frequency
+wa = 1.0  * 2 * pi  # atom frequency
+g  = 0.05 * 2 * pi  # coupling strength
+kappa = 0.005       # cavity dissipation rate
+gamma = 0.05  
+
 #Create the time list
-tlist = np. linspace (0,25 , 101 ) #numpy has been imported as np
+tlist = np.linspace(0,25,101) #numpy has been imported as np
 
 #Build up the Hamiltonian operators
 Hamilton =[[’Aa ’,wc],[’Bb ’,wa],[’Ab ’,g],[’aB ’,g]]
@@ -90,10 +97,10 @@ psi0=[0,1]
 T_o =[’Aa ’,’Bb ’]
 
 #Derive the equations under the expanson order of 2
-data = QCLData.Data ( Hamilton ,Co_ps , T_o , 2)
+data = QCLData.Data( Hamilton ,Co_ps , T_o , 2)
 
 #Evolve the system (We are using the ODE solver `solve_vip` from scipy, thus the parameters and the output forms are almost identity  )
-sol = QCLS.Solve (data , psi0, (0,25), t_eval = tlist )
+sol = QCLS.Solve(data , psi0, (0,25), t_eval = tlist )
 
 #Visualize the result via matplotlib
 fig, axes = plt.subplots(1, 1, figsize=(10,6))
