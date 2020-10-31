@@ -1,4 +1,4 @@
-# Quick guide to QLCS
+# Quick guide to QCLS
 QCLS: Cluster Expansion Based Solver for Open Quantum System
 
 ## Install
