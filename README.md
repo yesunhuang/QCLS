@@ -67,7 +67,7 @@ Using `QCLS` is quite similar to using the `mesolve` in `QuTip`, a quite simple 
 
 The following code shows how to use `QCLS` to simulate the *Janes-Cumming model*. (See also the same title notebooks from *Quantum mechanics lectures with QuTiP*)
 
-The Hamiltonian can be express as
+The Hamiltonian can be expressed as
 
 $$
 \hat{H}=\hbar\omega_c \hat{a}^\dagger \hat{a}+\frac{1}{2}\hbar\omega_a \hat{\sigma}_z+\hbar g(\hat{a}^\dagger \hat{\sigma}_-+\hat{a}\hat{\sigma}_+),
