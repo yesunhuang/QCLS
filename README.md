@@ -311,7 +311,7 @@ axes.set_ylabel('Occupation probability')
 
 * Check out the source codes and the jupyter notebook files.
 
-* See also the published paper *QCLS_ A cluster-expansion based effective solver for medium coupling quantum non-linear optical systems*
+* See also the published paper.
 
 * If your are interesting in the implement, check up the *ImplementDetail* pdfs. (Warm prompt: those files are so messy and suck.)
 
