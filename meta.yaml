@@ -1,0 +1,42 @@
+{% set name = "QCLSolver" %}
+{% set version = "1.0.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/Q/QCLSolver/QCLSolver-1.0.1.tar.gz
+  sha256: db32265a6c0f9ce56859738b57890587462a4e117fc496786d474dcf09a60131
+
+build:
+  number: 0
+  script: "python -m pip install . -vv"
+
+requirements:
+  host:
+    - numpy >=1.16.5
+    - pip
+    - python
+    - scipy >=1.4.1
+  run:
+    - numpy >=1.16.5
+    - python
+    - scipy >=1.4.1
+
+test:
+  imports:
+    - QCLSolver
+
+about:
+  home: https://pypi.org/project/QCLSolver/
+  license: "GNU General Public v3 (GPLv3)"
+  license_family: GPL3
+  summary: "A tool for cluster expansion solver."
+  doc_url: https://github.com/yesunhuang/QCLS/blob/main/README.md
+  dev_url: https://github.com/yesunhuang/QCLS
+
+extra:
+  recipe-maintainers:
+    - leonardodalinky
+    - yesunhuang
