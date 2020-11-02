@@ -30,13 +30,13 @@ python ./setup.py install
 #### Install via pip
 
 ```
-pip install QCLS
+pip install QCLSolver
 ```
 
 #### Install via conda
 
 ```
-conda install QCLS
+conda install -c yesunhuang qclsolver
 ```
 
 #### Suggested way of import
