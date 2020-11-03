@@ -9,7 +9,7 @@ QCLS: Cluster Expansion Based Solver for Open Quantum System
 
 * Scipy 1.4.1 and later version
 
-* numpy
+* numpy 1.16.5 and later version
 
   Quick install
 
@@ -33,7 +33,7 @@ python ./setup.py install
 pip install QCLSolver
 ```
 
-#### Install via conda
+#### Install via conda (python=3.8 only)
 
 ```
 conda install -c yesunhuang qclsolver
