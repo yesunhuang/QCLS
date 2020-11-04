@@ -97,10 +97,10 @@ psi0 = [0,1]
 T_o = ['Aa','Bb']
 
 #Derive the equations under the expanson order of 2
-data = Data.Data(Hamilton ,Co_ps , T_o , 2)
+data = Data(Hamilton ,Co_ps , T_o , 2)
 
 #Evolve the system (We are using the ODE solver `solve_vip` from scipy, thus the parameters and the output forms are almost identity  )
-sol = Solver.Solve(data , psi0, (0,25), t_eval = tlist )
+sol = Solve(data , psi0, (0,25), t_eval = tlist )
 
 #Visualize the result via matplotlib
 fig, axes = plt.subplots(1, 1, figsize=(10,6))
