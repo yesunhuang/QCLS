@@ -33,7 +33,7 @@ python ./setup.py install
 pip install QCLSolver
 ```
 
-#### Install via conda (python=3.8 only)
+#### Install via conda (python<3.9)
 
 ```
 conda install -c yesunhuang qclsolver
@@ -114,7 +114,7 @@ axes.set_ylabel('Occupation probability')
 plt.show()
 ```
 
-![Image text]()
+![Image text](https://github.com/yesunhuang/QCLS/blob/main/fig/example.png)
 ## API
 
 ### 1.Data Class
