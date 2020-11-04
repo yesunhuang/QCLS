@@ -85,16 +85,16 @@ gamma = 0.05
 tlist = np.linspace(0,25,101) #numpy has been imported as np
 
 #Build up the Hamiltonian operators
-Hamilton = [[’Aa ’,wc],[’Bb ’,wa],[’Ab ’,g],[’aB ’,g]]
+Hamilton = [['Aa ',wc],['Bb',wa],['Ab',g],['aB',g]]
 
 #Build up the Collapse operators
-Co_ps = [[’a’,kappa ],[’b’,gamma ]]
+Co_ps = [['a',kappa ],['b',gamma ]]
 
 #Define the inital states (Only folk states are supported now)
 psi0 = [0,1]
 
 #Add the tracking operators (The result will be returned at the same order of the operators in T_o)
-T_o = [’Aa ’,’Bb ’]
+T_o = ['Aa ','Bb']
 
 #Derive the equations under the expanson order of 2
 data = Data.Data(Hamilton ,Co_ps , T_o , 2)
