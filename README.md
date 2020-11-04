@@ -110,8 +110,11 @@ axes.plot(tlist, np.real(sol.y[1]),color='blue',linestyle='--',label="Atom excit
 axes.legend(loc=0)
 axes.set_xlabel('Time')
 axes.set_ylabel('Occupation probability')
+
+plt.show()
 ```
 
+![Image text]()
 ## API
 
 ### 1.Data Class
