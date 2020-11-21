@@ -5,6 +5,9 @@ QCLS: Cluster Expansion Based Solver for Open Quantum System
 
 ### Requirement
 
+* C++ Build environment
+  (Simply download [VSBuildTools](https://visualstudio.microsoft.com/downloads/#other) and install C++ build tools if you don't know how to configure it.)
+
 * Python 3.7 and later version
 
 * Scipy 1.4.1 and later version
