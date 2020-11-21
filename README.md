@@ -72,9 +72,7 @@ The following code shows how to use `QCLS` to simulate the *Janes-Cumming model*
 
 The Hamiltonian can be expressed as
 
-$$
-\hat{H}=\hbar\omega_c \hat{a}^\dagger \hat{a}+\frac{1}{2}\hbar\omega_a \hat{\sigma}_z+\hbar g(\hat{a}^\dagger \hat{\sigma}_-+\hat{a}\hat{\sigma}_+),
-$$
+![](http://latex.codecogs.com/svg.latex?\hat{H}=\hbar\omega_c\hat{a}^\dagger\hat{a}+\frac{1}{2}\hbar\omega_a\hat{\sigma}_z+{\hbar}g(\hat{a}^\dagger\hat{\sigma}_-+\hat{a}\hat{\sigma}_+))
 
 ```python
 #parameters
