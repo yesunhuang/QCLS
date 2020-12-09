@@ -83,7 +83,7 @@ LabelSeq parse_PyList_Long_To_LabelSeq(PyObject* pylist) {
 	if (!PyList_CheckExact(pylist)) {
 		RAISE_PY_ERROR(PyExc_TypeError, "parse_PyList_Long_To_LabelSeq error.");
 	}
-	int listsize = PyList_Size(pylist);
+	ssize_t listsize = PyList_Size(pylist);
 	LabelSeq ans;
 	ans.reserve(listsize);
 	for (int i = 0; i < listsize; ++i) {
@@ -105,7 +105,7 @@ std::vector<Complex> parse_PyList_XXX_To_Vector_Complex(PyObject* pylist) {
 	if (!PyList_CheckExact(pylist)) {
 		RAISE_PY_ERROR(PyExc_TypeError, "parse_PyList_XXX_To_Vector_Complex error.");
 	}
-	int listsize = PyList_Size(pylist);
+	ssize_t listsize = PyList_Size(pylist);
 	std::vector<Complex> ans;
 	ans.reserve(listsize);
 	for (int i = 0; i < listsize; ++i) {
@@ -171,7 +171,7 @@ core_DeriveAssign(PyObject* self, PyObject* args) {
 	if (!PyList_CheckExact(objects[1])) {
 		RAISE_PY_ERROR(PyExc_TypeError, "The 2nd arg isn't a list.");
 	}
-	int inputArrLen_HO = PyList_Size(objects[1]);
+	ssize_t inputArrLen_HO = PyList_Size(objects[1]);
 	for (int i = 0; i < inputArrLen_HO; ++i) {
 		PyObject* tempobj = PyList_GetItem(objects[1], i);
 		if (!PyList_CheckExact(tempobj)) {
@@ -191,7 +191,7 @@ core_DeriveAssign(PyObject* self, PyObject* args) {
 	if (!PyList_CheckExact(objects[3])) {
 		RAISE_PY_ERROR(PyExc_TypeError, "The 4th arg isn't a list.");
 	}
-	int inputArrLen_CO = PyList_Size(objects[3]);
+	ssize_t inputArrLen_CO = PyList_Size(objects[3]);
 	for (int i = 0; i < inputArrLen_CO; ++i) {
 		PyObject* tempobj = PyList_GetItem(objects[3], i);
 		if (!PyList_CheckExact(tempobj)) {
@@ -211,7 +211,7 @@ core_DeriveAssign(PyObject* self, PyObject* args) {
 	if (!PyList_CheckExact(objects[5])) {
 		RAISE_PY_ERROR(PyExc_TypeError, "The 6th arg isn't a list.");
 	}
-	int inputArrLen_Track = PyList_Size(objects[5]);
+	ssize_t inputArrLen_Track = PyList_Size(objects[5]);
 	for (int i = 0; i < inputArrLen_Track; ++i) {
 		PyObject* tempobj = PyList_GetItem(objects[5], i);
 		if (!PyList_CheckExact(tempobj)) {
@@ -299,7 +299,7 @@ core_SetHamiltonCoef(PyObject* self, PyObject* args) {
 	}
 	DeriveData* pdata = CheckArgsDData(pyData);
 	DeriveData& data = *pdata;
-	int listSize = PyList_Size(pyList);
+	ssize_t listSize = PyList_Size(pyList);
 	auto ret = parse_PyList_XXX_To_Vector_Complex(pyList);
 
 	SetHOCoefOfDData(data, ret);
@@ -322,7 +322,7 @@ core_SetCollapseCoef(PyObject* self, PyObject* args) {
 	}
 	DeriveData* pdata = CheckArgsDData(pyData);
 	DeriveData& data = *pdata;
-	int listSize = PyList_Size(pyList);
+	ssize_t listSize = PyList_Size(pyList);
 	auto ret = parse_PyList_XXX_To_Vector_Complex(pyList);
 
 	SetCOCoefOfDData(data, ret);
@@ -414,13 +414,12 @@ core_UpdateInitialState(PyObject* self, PyObject* args) {
 	auto tmp1 = parse_PyList_XXX_To_Vector_Complex(pyList);
 	LabelSeq init_seq;
 	for (auto it = tmp1.cbegin(); it != tmp1.cend(); ++it) {
-		init_seq.push_back((*it).getReal());
+		init_seq.push_back(static_cast<Label>((*it).getReal()));
 	}
 	std::vector<Complex> ret;
 	for (int i = 0; i < data.size; ++i) {
 		pNode nowTrack = data.trackNodes[i];
 		LabelSeq s = nowTrack->seqFromRoot();
-		double temp;
 		auto init_tmp = DeriveData::initialValue(s, init_seq);
 		ret.push_back(init_tmp);
 	}
@@ -434,6 +433,28 @@ core_UpdateInitialState(PyObject* self, PyObject* args) {
 
 	return ansList;
 }
+
+static PyObject*
+core_ClusterExp(PyObject* self, PyObject* args) {
+	PyObject* pyData = NULL;
+	if (PyTuple_Size(args) != 1) {
+		RAISE_PY_ERROR(PyExc_TypeError, "Too many args are passed.");
+	}
+	PyObject* pyList;
+	if (!PyArg_ParseTuple(args, "O", &pyList))
+	{
+		RAISE_PY_ERROR(PyExc_TypeError, "The passed args aren't objects.");
+	}
+	if (!PyList_CheckExact(pyList)) {
+		RAISE_PY_ERROR(PyExc_TypeError, "The first arg isn't a strict list.");
+	}
+	LabelSeq seq = parse_PyList_Long_To_LabelSeq(pyList);
+	OPTree tree = ClusterExp::ClusterExpansion(seq);
+	deb_PrintTree(tree);
+	Py_RETURN_NONE;
+}
+
+// turn on the 'debug' option
 #define __TREEDEBUG__
 
 #ifdef __TREEDEBUG__
@@ -449,7 +470,7 @@ core_PrintData(PyObject* self, PyObject* args) {
 	DeriveData* pdata = CheckArgsDData(pyData);
 	DeriveData& data = *pdata;
 
-	deb_printData(data);
+	deb_PrintData(data);
 
 	Py_RETURN_NONE;
 }
@@ -466,6 +487,8 @@ static PyMethodDef coreMethods[] = {
 	{"GetHamiltonCoef",  core_GetHamiltonCoef, METH_VARARGS, NULL},
 	{"GetCollapseCoef",  core_GetCollapseCoef, METH_VARARGS, NULL},
 	{"UpdateInitialState",  core_UpdateInitialState, METH_VARARGS, NULL},
+	// Tools
+	{"ClusterExp",  core_ClusterExp, METH_VARARGS, NULL},
 #ifdef __TREEDEBUG__
 	{"PrintData",  core_PrintData, METH_VARARGS, NULL},
 #endif // __TREEDEBUG__

@@ -20,11 +20,11 @@
 #include <memory>
 #include <algorithm>
 
-#include "Complex.h"
+#include "complex.h"
 
 namespace ayaji {
 	class OPTree;
-	typedef int Label;
+	using Label = int;
 	typedef std::vector<Label> LabelSeq;
 
 	class Node : public std::enable_shared_from_this<Node> {

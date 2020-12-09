@@ -9,16 +9,19 @@ module1 = Extension("QCLSolver.core",
                              "./QCLSolver/core/derive_data.cpp", "./QCLSolver/core/node.cpp",
                              "./QCLSolver/core/operator_tree.cpp", "./QCLSolver/core/operator_tree_iterator.cpp",
                              "./QCLSolver/core/py_wrapper.cpp", "./QCLSolver/core/static_dtree.cpp"],
-                    include_dirs=['./QCLSolver/core/'])
+                    include_dirs=['./QCLSolver/core/'],
+                    #define_macros=[('DEB', None)]
+                    )
 
 # long description
 with open('README.md', "r", encoding='utf-8') as fp:
     long_description = fp.read()
 
 # install requirements automatically
-fp = open('requirements.txt', 'r', encoding='utf-8')
-requirements = fp.readlines()
-fp.close()
+requirements = []
+with open('requirements.txt', 'r', encoding='utf-8') as fp:
+    for s in fp.readlines():
+        requirements.append(s.strip())
 
 setup(name="QCLSolver",
       version="1.0.3",

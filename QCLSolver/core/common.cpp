@@ -2,8 +2,8 @@
 
 namespace ayaji {
 	LabelSeq Common::mul(const LabelSeq& label1, const LabelSeq& label2) {
-		int len1 = label1.size();
-		int len2 = label2.size();
+		size_t len1 = label1.size();
+		size_t len2 = label2.size();
 		LabelSeq ret;
 		if (label1.front() == 0) {
 			ret.assign(label2.cbegin(), label2.cend());
@@ -76,8 +76,8 @@ namespace ayaji {
 	}
 
 	LabelSeq Common::mul_Connect(const LabelSeq& label1, const LabelSeq& label2) {
-		int len1 = label1.size();
-		int len2 = label2.size();
+		size_t len1 = label1.size();
+		size_t len2 = label2.size();
 		LabelSeq ret;
 		if (label1.front() == 0) {
 			ret.assign(label2.cbegin(), label2.cend());
@@ -134,17 +134,17 @@ namespace ayaji {
 	}
 
 	int Common::_GetNextCPIndexFromOPArray(const LabelSeq& seq, int now) {
-		int size = seq.size();
+		size_t size = seq.size();
 		int i = now;
 		for (; i < size && seq.at(i) != 0; ++i) {
 			// nothing
 		}
-		return (i == size) ? size : i + 1;
+		return (i == size) ? static_cast<int>(size) : i + 1;
 	}
 
 	int Common::_CompareOPArrayBuffer(const LabelSeq& seq1, int s1, const LabelSeq& seq2, int s2) {
-		int size1 = seq1.size();
-		int size2 = seq2.size();
+		size_t size1 = seq1.size();
+		size_t size2 = seq2.size();
 		int sn1 = s1, sn2 = s2;
 		for (; sn1 < size1 && seq1.at(sn1) != 0; ++sn1) {}
 		for (; sn2 < size2 && seq2.at(sn2) != 0; ++sn2) {}

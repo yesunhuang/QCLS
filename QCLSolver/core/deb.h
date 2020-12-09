@@ -22,10 +22,13 @@ namespace ayaji {
 	/// print out the tree to stdout
 	/// </summary>
 	/// <param name="tree">tree to be printed</param>
-	void deb_printTree(const OPTree& tree);
-	void deb_printTree_(pNode& node, LabelSeq& seqBuf, int cSize);
+	void deb_PrintTree(const OPTree& tree);
+	void deb_PrintTree_(pNode& node, LabelSeq& seqBuf, int cSize);
 
-	void deb_printData(DeriveData& data);
+	std::vector<std::pair<Complex, LabelSeq>> deb_Tree2Pair(const OPTree& tree);
+	void deb_Tree2Pair_(pNode& node, LabelSeq& seqBuf, int cSize, std::vector<std::pair<Complex, LabelSeq>>& pairs);
+
+	void deb_PrintData(DeriveData& data);
 }
 
 

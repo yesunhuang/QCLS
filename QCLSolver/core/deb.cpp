@@ -13,18 +13,18 @@ namespace ayaji {
 		return seq;
 	}
 
-	void deb_printTree(const OPTree& tree) {
+	void deb_PrintTree(const OPTree& tree) {
 		if (tree.root == nullptr) return;
 		LabelSeq seqBuf;
 		for (int i = 0; i <= tree.childSize; ++i) {
 			pNode node;
 			if ((node = tree.root->children[i]) != nullptr) {
-				deb_printTree_(node, seqBuf, tree.childSize);
+				deb_PrintTree_(node, seqBuf, tree.childSize);
 			}
 		}
 	}
 
-	void deb_printTree_(pNode& node, LabelSeq& seqBuf, int cSize) {
+	void deb_PrintTree_(pNode& node, LabelSeq& seqBuf, int cSize) {
 		if (node == nullptr) return;
 		seqBuf.push_back(node->label);
 		if (!node->value.isZero()) {
@@ -38,13 +38,43 @@ namespace ayaji {
 		for (int i = 0; i <= cSize; ++i) {
 			pNode tnode;
 			if ((tnode = node->children[i]) != nullptr) {
-				deb_printTree_(tnode, seqBuf, cSize);
+				deb_PrintTree_(tnode, seqBuf, cSize);
 			}
 		}
 		seqBuf.pop_back();
 	}
 
-	void deb_printData(DeriveData& data) {
+	std::vector<std::pair<Complex, LabelSeq>> deb_Tree2Pair(const OPTree& tree) {
+		if (tree.root == nullptr) return std::vector<std::pair<Complex, LabelSeq>>();
+		std::vector<std::pair<Complex, LabelSeq>> ans;
+		LabelSeq seqBuf;
+		for (int i = 0; i <= tree.childSize; ++i) {
+			pNode node;
+			if ((node = tree.root->children[i]) != nullptr) {
+				deb_Tree2Pair_(node, seqBuf, tree.childSize, ans);
+			}
+		}
+		return std::move(ans);
+	}
+
+	void deb_Tree2Pair_(pNode& node, LabelSeq& seqBuf, int cSize, std::vector<std::pair<Complex, LabelSeq>>& pairs) {
+		if (node == nullptr) return;
+		seqBuf.push_back(node->label);
+		if (!node->value.isZero()) {
+			pairs.push_back(
+				std::pair<Complex, LabelSeq>(node->value, seqBuf)
+			);
+		}
+		for (int i = 0; i <= cSize; ++i) {
+			pNode tnode;
+			if ((tnode = node->children[i]) != nullptr) {
+				deb_Tree2Pair_(tnode, seqBuf, cSize, pairs);
+			}
+		}
+		seqBuf.pop_back();
+	}
+
+	void deb_PrintData(DeriveData& data) {
 		printf("---------------------------\n");
 		printf("Tracking Nodes:\n");
 		for (int i = 0; i < data.size; ++i) {
@@ -62,14 +92,14 @@ namespace ayaji {
 			for (int j = 0; j < data.hoSize; j++) {
 				printf("HO_Tree %d, coef is %.3lf+(%.3lf)j:\n", j,
 					data.hoCoefs[j].getReal(), data.hoCoefs[j].getImage());
-				deb_printTree(data.evoTrees_HO[i][j]);
+				deb_PrintTree(data.evoTrees_HO[i][j]);
 				putchar('\n');
 			}
 			putchar('\n');
 			for (int j = 0; j < data.coSize; j++) {
 				printf("CO_Tree %d:, coef is %.3lf+(%.3lf)j:\n", j,
 					data.coCoefs[j].getReal(), data.coCoefs[j].getImage());
-				deb_printTree(data.evoTrees_CO[i][j]);
+				deb_PrintTree(data.evoTrees_CO[i][j]);
 				putchar('\n');
 			}
 			printf("---------------------------");

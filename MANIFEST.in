@@ -1,3 +1,4 @@
 global-include requirements.txt
 global-include *.h
+global-include LICENSE
 prune QCLSolver\core\lib\

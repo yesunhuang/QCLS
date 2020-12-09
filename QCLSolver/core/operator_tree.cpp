@@ -13,7 +13,7 @@
 
 namespace ayaji {
 	OPTree OPTree::SONormalize(const LabelSeq& seq) {
-		int len = seq.size();
+		int len = static_cast<int>(seq.size());
 		/* mark */
 		Label normal = ((seq[0] + 1) / 2) * 2;
 		Label dagger = normal - 1;
@@ -78,7 +78,7 @@ namespace ayaji {
 		/* 默认输入符合格式,即无0 */
 		LabelSeq seq(seq_in);
 		_SortMOArray(seq);
-		int len = seq.size();
+		int len = static_cast<int>(seq.size());
 		int csize = Common::maxLabel(seq);
 		/* m为一个mode的系底 */
 		OPTree ret;
@@ -415,7 +415,7 @@ namespace ayaji {
 	int OPTree::_SortMOArray(LabelSeq& seq) {
 		/* 冒泡排序,可stable */
 		/* 默认输入妹有0,且符合格式 */
-		int len = seq.size();
+		int len = static_cast<int>(seq.size());
 		int lastChange = 0;
 		int isChange = 1;
 		while (lastChange < len - 1) {
@@ -500,7 +500,7 @@ namespace ayaji {
 
 	int OPTree::_BuildFromPTree(pNode posNode, int posCsize, LabelSeq seq, pNode opNode, int opCsize) {
 		int ret = 1;
-		int len = seq.size();
+		int len = static_cast<int>(seq.size());
 		for (int i = 0; i <= posCsize; ++i) {
 			if (posNode->children[i] != nullptr) {
 				/* 不允许位置树指向operator不存在的位置 */

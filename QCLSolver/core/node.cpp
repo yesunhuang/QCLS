@@ -99,7 +99,7 @@ namespace ayaji {
 	void Node::resize_r(int newSize) {
 		if (newSize < 0)
 			throw std::out_of_range("New size is out of range");
-		int nowSize = children.size() - 1;
+		int nowSize = static_cast<int>(children.size()) - 1;
 		if (nowSize == newSize) return;
 		else if (nowSize < newSize) {
 			children.insert(children.cend(), newSize - nowSize, nullptr);
@@ -144,7 +144,7 @@ namespace ayaji {
 
 	int Node::getFirstNonEmptyChildIndex(void) {
 		int t = 0;
-		int size = children.size();
+		int size = static_cast<int>(children.size());
 		for (; t < size; ++t) {
 			if (children[t] != nullptr)
 				return t;
@@ -158,7 +158,7 @@ namespace ayaji {
 	}
 
 	int Node::getLastNonEmptyChildIndex(void) {
-		int size = children.size();
+		int size = static_cast<int>(children.size());
 		int t = size - 1;
 		for (; t >= 0; --t) {
 			if (children[t] != nullptr)
