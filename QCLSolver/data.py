@@ -311,6 +311,7 @@ class Data:
     def Debug(self):
         clucore.PrintData(self.__deriveData)
 
+
 def Copy_Func(f):
     g = types.FunctionType(f.__code__, f.__globals__, name=f.__name__,
                            argdefs=f.__defaults__,

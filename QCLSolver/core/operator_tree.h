@@ -18,9 +18,7 @@
 #include "operator_tree_iterator.h"
 #include "common.h"
 
-#ifdef DEB
 #include "deb.h"
-#endif // DEB
 
 namespace ayaji {
 	class OPTree_Iterator;
@@ -55,12 +53,15 @@ namespace ayaji {
 		friend class OPTree_Iterator;
 		friend class StaticDTree;
 		friend class ClusterExp;
-#ifdef DEB
+
 		friend void deb_PrintTree(const OPTree& tree);
 		friend void deb_PrintTree_(pNode& node, const LabelSeq& seqBuf, int cSize);
+		template<typename T>
+		friend void deb_PrintTree_(pNode& node, LabelSeq& seqBuf, int cSize, T& outputer);
+		template<typename T>
+		friend void deb_PrintTree(const OPTree& tree, T& func);
 		friend std::vector<std::pair<Complex, LabelSeq>> deb_Tree2Pair(const OPTree& tree);
 		friend void deb_Tree2Pair_(pNode& node, LabelSeq& seqBuf, int cSize, std::vector<std::pair<Complex, LabelSeq>>& pairs);
-#endif // DEB
 
 		/// <summary>
 		/// Add every elements in 'other' to this

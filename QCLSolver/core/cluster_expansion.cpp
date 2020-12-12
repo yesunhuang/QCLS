@@ -45,7 +45,7 @@ namespace ayaji {
 	}
 
 	OPTree ClusterExp::ClusterExpansion(const LabelSeq& seq) {
-		int len = seq.size();
+		int len = static_cast<int>(seq.size());
 		PTree dtree = DeltaTree(len);
 		OPTree outTree = OPTree::BuildFromPTree(dtree, seq);
 		DTToBT(outTree, seq);

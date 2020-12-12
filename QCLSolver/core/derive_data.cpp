@@ -356,7 +356,7 @@ namespace ayaji {
 
 			/* 去除长度超过范围的 */
 			/* TODO: 这个方法很蠢,日后需要优化 */
-			while (_DeleteAndCE(OA_Tree, maxOPLen) == 1) {}
+			while (DeleteAndCE(OA_Tree, maxOPLen) == 1) {}
 
 			ret.push_back(OA_Tree);
 		}
@@ -417,7 +417,7 @@ namespace ayaji {
 
 			/* 去除长度超过范围的 */
 			/* TODO: 这个方法很蠢,日后需要优化 */
-			while (_DeleteAndCE(OdAO_Tree, maxOPLen) == 1) {}
+			while (DeleteAndCE(OdAO_Tree, maxOPLen) == 1) {}
 
 			ret[i] = OdAO_Tree;
 		}
@@ -425,7 +425,7 @@ namespace ayaji {
 		return ret;
 	}
 
-	int DeriveData::_DeleteAndCE(OPTree& tree, int maxOPLen) {
+	int DeriveData::DeleteAndCE(OPTree& tree, int maxOPLen) {
 		for (auto it = tree.getIterator(); *it != nullptr; it.next()) {
 			LabelSeq seq = it.getCurLabelSeq();
 			int len = seq.size();

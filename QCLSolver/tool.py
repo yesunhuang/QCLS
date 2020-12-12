@@ -2,22 +2,32 @@ import QCLSolver.core as clucore
 from typing import List, Dict, Tuple
 
 
-def cluster_expansion(op: str) -> None:
+def cluster_expansion(op: str, max_op_len: int = 5) -> Tuple[List[int], Dict[str, int], List[Tuple[complex, Tuple[int]]]]:
     """
     Applying 'Cluster Expansion' to a specific operator and print out the result.
 
+    Example:
+        arr_ops, map_list, ce = cluster_expansion('AAa', 3)
+
     :param op: operator in string representation
     :type op: str
-    :return: None
-    :rtype: None
+    :param max_op_len: max length of operator
+    :type max_op_len: int
+    :return:
+    The first result is the array-type representation of the operator.
+
+    The second result is the mapping list.
+
+    The third result is the answer of 'cluster_expansion':
+
+    Each Tuple[complex, Tuple[int]] means a node.
+    The 'complex' is the coefficient. The 'Tuple[int]' is the array-type representation of nodes.
+
+    :rtype: Tuple[List[int], Dict[str, int], List[Tuple[complex, Tuple[int]]]]
     """
     arr_ops, map_list = map_ops(op)
-    print('Array representation for "%s":' % op)
-    print(arr_ops)
-    print('Str to Array type mapping:')
-    print(map_list)
-    print('CE tree:')
-    clucore.ClusterExp(arr_ops)
+    ans: List[Tuple[complex, Tuple[int]]] = clucore.ClusterExp(arr_ops, max_op_len)
+    return arr_ops, map_list, ans
 
 
 def map_ops(op: str) -> Tuple[List[int], Dict[str, int]]:

@@ -13,7 +13,6 @@
 
 #include "operator_tree.h"
 #include "cluster_expansion.h"
-//#include "deb.h"
 
 namespace ayaji {
 	class DeriveData {
@@ -95,6 +94,15 @@ namespace ayaji {
 		// other
 
 		/// <summary>
+		/// 删除树中第一个遇到的长度大于maxOPLen的operator
+		/// TODO: 此处的乘法，可以分成更大一块的Operator再进行相乘，以加快
+		/// </summary>
+		/// <param name="tree">operator tree</param>
+		/// <param name="maxOPLen">operator最大长度</param>
+		/// <returns>若存在删除并成功时,返回值为1; 否则,返回值为0.</returns>
+		static int DeleteAndCE(OPTree& tree, int maxOPLen);
+
+		/// <summary>
 		/// multiply node's value with sth
 		/// </summary>
 		/// <param name="node"></param>
@@ -117,14 +125,7 @@ namespace ayaji {
 		static std::vector<OPTree> _evolution_CO(const std::vector<LabelSeq>& inputSeq_CO, const std::vector<Complex>& inputSeqCoef_CO,
 			const LabelSeq& userSeq, int maxOPLen);
 
-		/// <summary>
-		/// 删除树中第一个遇到的长度大于maxOPLen的operator
-		/// TODO: 此处的乘法，可以分成更大一块的Operator再进行相乘，以加快
-		/// </summary>
-		/// <param name="tree">operator tree</param>
-		/// <param name="maxOPLen">operator最大长度</param>
-		/// <returns>若存在删除并成功时,返回值为1; 否则,返回值为0.</returns>
-		static int _DeleteAndCE(OPTree& tree, int maxOPLen);
+
 		/// <summary>
 		/// 获得长度大于maxOPLen的operator的起始index
 		/// </summary>
