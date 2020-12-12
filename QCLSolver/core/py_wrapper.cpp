@@ -434,30 +434,56 @@ core_UpdateInitialState(PyObject* self, PyObject* args) {
 	return ansList;
 }
 
+#ifdef DEB
+
 static PyObject*
 core_ClusterExp(PyObject* self, PyObject* args) {
 	PyObject* pyData = NULL;
-	if (PyTuple_Size(args) != 1) {
+	if (PyTuple_Size(args) != 2) {
 		RAISE_PY_ERROR(PyExc_TypeError, "Too many args are passed.");
 	}
 	PyObject* pyList;
-	if (!PyArg_ParseTuple(args, "O", &pyList))
+	int maxOPLen;
+	if (!PyArg_ParseTuple(args, "OI", &pyList, &maxOPLen))
 	{
 		RAISE_PY_ERROR(PyExc_TypeError, "The passed args aren't objects.");
 	}
 	if (!PyList_CheckExact(pyList)) {
 		RAISE_PY_ERROR(PyExc_TypeError, "The first arg isn't a strict list.");
 	}
+	if (maxOPLen < 0) {
+		RAISE_PY_ERROR(PyExc_TypeError, "The second arg isn't a non-negative integer.");
+	}
 	LabelSeq seq = parse_PyList_Long_To_LabelSeq(pyList);
 	OPTree tree = ClusterExp::ClusterExpansion(seq);
-	deb_PrintTree(tree);
-	Py_RETURN_NONE;
+	// delete and CE
+	while (DeriveData::DeleteAndCE(tree, maxOPLen) == 1) {}
+	struct {
+		std::vector<PyObject*> strs;
+
+		void operator() (Complex c, LabelSeq seq) {
+			PyObject* tuple = PyTuple_New(2);
+			PyTuple_SetItem(tuple, 0, PyComplex_FromDoubles(c.getReal(), c.getImage()));
+			PyObject* arrs = PyTuple_New(seq.size());
+			for (size_t i = 0; i < seq.size(); ++i) {
+				PyTuple_SetItem(arrs, static_cast<Py_ssize_t>(i), PyLong_FromLong(static_cast<long>(seq[i])));
+			}
+			PyTuple_SetItem(tuple, 1, arrs);
+			strs.push_back(tuple);
+		}
+
+		PyObject* toList() {
+			PyObject* list = PyList_New(static_cast<Py_ssize_t>(strs.size()));
+			for (size_t i = 0; i < strs.size(); ++i) {
+				PyList_SetItem(list, static_cast<Py_ssize_t>(i), strs[i]);
+			}
+			return list;
+		}
+	} outputer;
+	deb_PrintTree(tree, outputer);
+	return outputer.toList();
 }
 
-// turn on the 'debug' option
-#define __TREEDEBUG__
-
-#ifdef __TREEDEBUG__
 static PyObject*
 core_PrintData(PyObject* self, PyObject* args) {
 	PyObject* pyData = NULL;
@@ -474,7 +500,7 @@ core_PrintData(PyObject* self, PyObject* args) {
 
 	Py_RETURN_NONE;
 }
-#endif // __TREEDEBUG__
+#endif // DEB
 
 
 static PyMethodDef coreMethods[] = {
@@ -487,12 +513,11 @@ static PyMethodDef coreMethods[] = {
 	{"GetHamiltonCoef",  core_GetHamiltonCoef, METH_VARARGS, NULL},
 	{"GetCollapseCoef",  core_GetCollapseCoef, METH_VARARGS, NULL},
 	{"UpdateInitialState",  core_UpdateInitialState, METH_VARARGS, NULL},
+#ifdef DEB
 	// Tools
 	{"ClusterExp",  core_ClusterExp, METH_VARARGS, NULL},
-#ifdef __TREEDEBUG__
 	{"PrintData",  core_PrintData, METH_VARARGS, NULL},
-#endif // __TREEDEBUG__
-
+#endif // DEB
 	{NULL, NULL, 0, NULL}        /* Sentinel */
 };
 

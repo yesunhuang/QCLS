@@ -58,6 +58,10 @@ namespace ayaji {
 #ifdef DEB
 		friend void deb_PrintTree(const OPTree& tree);
 		friend void deb_PrintTree_(pNode& node, const LabelSeq& seqBuf, int cSize);
+		template<typename T>
+		friend void deb_PrintTree_(pNode& node, LabelSeq& seqBuf, int cSize, T& outputer);
+		template<typename T>
+		friend void deb_PrintTree(const OPTree& tree, T& func);
 		friend std::vector<std::pair<Complex, LabelSeq>> deb_Tree2Pair(const OPTree& tree);
 		friend void deb_Tree2Pair_(pNode& node, LabelSeq& seqBuf, int cSize, std::vector<std::pair<Complex, LabelSeq>>& pairs);
 #endif // DEB

@@ -1,5 +1,7 @@
 #include "deb.h"
 
+#include "derive_data.h"
+
 namespace ayaji {
 	LabelSeq deb_generateLabelSeq(unsigned size, ...) {
 		va_list valist;

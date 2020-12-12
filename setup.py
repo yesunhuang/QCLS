@@ -10,7 +10,7 @@ module1 = Extension("QCLSolver.core",
                              "./QCLSolver/core/operator_tree.cpp", "./QCLSolver/core/operator_tree_iterator.cpp",
                              "./QCLSolver/core/py_wrapper.cpp", "./QCLSolver/core/static_dtree.cpp"],
                     include_dirs=['./QCLSolver/core/'],
-                    #define_macros=[('DEB', None)]
+                    #define_macros=[('DEB', 1)]
                     )
 
 # long description
@@ -24,7 +24,7 @@ with open('requirements.txt', 'r', encoding='utf-8') as fp:
         requirements.append(s.strip())
 
 setup(name="QCLSolver",
-      version="1.0.3",
+      version="1.0.4",
       description="A tool for cluster expansion solver.",
       long_description=long_description,
       long_description_content_type="text/markdown",

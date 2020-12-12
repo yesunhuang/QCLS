@@ -3,10 +3,14 @@
 #ifndef _COMMON_H_
 #define _COMMON_H_
 
-
 #include "node.h"
 
 namespace ayaji {
+	class OPTree;
+	class ClusterExp;
+	class DeriveData;
+
+
 	class Common {
 	public:
 		static const int MAX_OPERATOR_LENGTH = 128;
