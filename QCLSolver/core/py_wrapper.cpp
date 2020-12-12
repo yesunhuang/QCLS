@@ -434,8 +434,6 @@ core_UpdateInitialState(PyObject* self, PyObject* args) {
 	return ansList;
 }
 
-#ifdef DEB
-
 static PyObject*
 core_ClusterExp(PyObject* self, PyObject* args) {
 	PyObject* pyData = NULL;
@@ -500,7 +498,6 @@ core_PrintData(PyObject* self, PyObject* args) {
 
 	Py_RETURN_NONE;
 }
-#endif // DEB
 
 
 static PyMethodDef coreMethods[] = {
@@ -513,11 +510,9 @@ static PyMethodDef coreMethods[] = {
 	{"GetHamiltonCoef",  core_GetHamiltonCoef, METH_VARARGS, NULL},
 	{"GetCollapseCoef",  core_GetCollapseCoef, METH_VARARGS, NULL},
 	{"UpdateInitialState",  core_UpdateInitialState, METH_VARARGS, NULL},
-#ifdef DEB
 	// Tools
 	{"ClusterExp",  core_ClusterExp, METH_VARARGS, NULL},
 	{"PrintData",  core_PrintData, METH_VARARGS, NULL},
-#endif // DEB
 	{NULL, NULL, 0, NULL}        /* Sentinel */
 };
 

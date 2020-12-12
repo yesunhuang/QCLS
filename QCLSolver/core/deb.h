@@ -1,8 +1,5 @@
 #pragma once
 
-#define DEB
-
-#ifdef DEB
 #ifndef _DEB_H_
 #define _DEB_H_
 
@@ -72,4 +69,3 @@ namespace ayaji {
 
 
 #endif // !_DEB_H_
-#endif
