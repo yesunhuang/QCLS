@@ -47,6 +47,7 @@ conda install -c yesunhuang qclsolver
 ```python
 from QCLSolver.solver import Solve
 from QCLSolver.data import Data
+from QCLSolver.tool import*
 ```
 
 
@@ -316,7 +317,23 @@ plt.show()
       return (y,tlist)
    ```
   
-    
+### 3.cluster_expansion method
+
+This function is used to investigate cluster expansion.
+
+* Prototype
+
+  ```python
+  def cluster_expansion(op: str, max_op_len: int = 5) -> Tuple[List[int], Dict[str, int], List[Tuple[complex, Tuple[int]]]]:
+* Parameters
+
+  ​	1.op: The string representation of operator.
+
+  ​	2.max_op_len:order of cluster expansion(please be noted that the operator inputted will be expanded for at least one time.)
+
+* Return:
+
+  The information of the cluster expansion form of inputted operator.
   
 ## More Information
 
