@@ -172,7 +172,7 @@ namespace ayaji {
 		/// </summary>
 		/// <returns>if succeed, return 0; else return non-zero.</returns>
 		int normalize();
-		OPTree& operator= (OPTree& other);
+		OPTree& operator= (const OPTree& other);
 		OPTree& operator= (OPTree&& other);
 
 		/// <summary>

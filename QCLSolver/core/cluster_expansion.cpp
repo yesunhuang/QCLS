@@ -1,4 +1,5 @@
 #include "cluster_expansion.h"
+#include <cstring>
 
 namespace ayaji {
 	OPTree ClusterExp::DeltaTree(int N) {

@@ -10,6 +10,8 @@
 
 #include "operator_tree.h"
 #include "deb.h"
+#include <cstring>
+#include <cmath>
 
 namespace ayaji {
 	OPTree OPTree::SONormalize(const LabelSeq& seq) {
@@ -31,7 +33,7 @@ namespace ayaji {
 			}
 			else {
 				/* arr[i] == normal */
-				for (int j = __min(zeroNum - 1, (len / 2)); j >= 0; --j) {
+				for (int j = std::min(zeroNum - 1, (len / 2)); j >= 0; --j) {
 					buf[j + 1] += buf[j] * (zeroNum - j);
 				}
 			}
@@ -379,7 +381,7 @@ namespace ayaji {
 		return 0;
 	}
 
-	OPTree& OPTree::operator=(OPTree& other) {
+	OPTree& OPTree::operator=(const OPTree& other) {
 		this->shallowCopy(other);
 		return *this;
 	}
@@ -486,7 +488,7 @@ namespace ayaji {
 		father->children[label] = nullptr;
 		nowNode->parent = nullptr;
 
-		if (father != nullptr && !father->isZero())
+		if (father != nullptr && father->isZero())
 			deleteNode_r(father);
 		delete nowNode;
 		return 0;

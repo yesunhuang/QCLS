@@ -9,6 +9,8 @@
  */
 #include "static_dtree.h"
 
+#include <cmath>
+
 namespace ayaji {
 	OPTree* StaticDTree::g_StanamicDTrees[STANAMIC_DTREE_SIZE + 1] = { NULL };
 
@@ -94,7 +96,7 @@ namespace ayaji {
 		Label maxLabel = 0;
 		for (int i = startIndex; i < endIndex; ++i) {
 			if (g_StaticDTreesList[i] != 255) {
-				maxLabel = __max(maxLabel, g_StaticDTreesList[i]);
+				maxLabel = std::max(maxLabel, g_StaticDTreesList[i]);
 			}
 		}
 		OPTree ret;

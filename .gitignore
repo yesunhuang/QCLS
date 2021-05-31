@@ -166,3 +166,10 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+.vscode/
+
+CMakeCache.txt
+CMakeFiles/
+*.cmake
+test

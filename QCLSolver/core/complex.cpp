@@ -313,7 +313,7 @@ namespace ayaji {
 	}
 
 	bool Complex::isZero() const {
-		return (abs(this->real) < episilon && abs(this->image) < episilon);
+		return (std::abs(this->real) < episilon && std::abs(this->image) < episilon);
 	}
 
 	double Complex::getReal() const {

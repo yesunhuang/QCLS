@@ -5,6 +5,7 @@
 #include "common.h"
 #include "cluster_expansion.h"
 #include "static_dtree.h"
+#include "derive_data.h"
 
 //#include <crtdbg.h>
 
@@ -62,9 +63,9 @@ int main() {
 		//LabelSeq init;
 		//init.push_back(1);
 		//init.push_back(3);
-		//auto outputdata = DeriveData::deriveAssign(H, h_coef, Co_ps, c_coef, init, track, maxoplen);
-		//deb_printData(outputdata);
-		//auto ans = outputdata.calEvolution();
+		//auto outputData = DeriveData::deriveAssign(H, h_coef, Co_ps, c_coef, init, track, maxoplen);
+		//deb_printData(outputData);
+		//auto ans = outputData.calEvolution();
 		//while(true){}
 
 		//auto a = OPTree::MONormalize(deb_generateLabelSeq(5, 1, 1, 4, 1, 2));
@@ -114,47 +115,82 @@ int main() {
 		//init.push_back(0);
 		//init.push_back(0);
 		//init.push_back(0);
-		//auto outputdata = DeriveData::deriveAssign(H, h_coef, Co_ps, c_coef, init, track, maxoplen);
-		//deb_printData(outputdata);
-		//auto ans = outputdata.calEvolution();
+		//auto outputData = DeriveData::deriveAssign(H, h_coef, Co_ps, c_coef, init, track, maxoplen);
+		//deb_printData(outputData);
+		//auto ans = outputData.calEvolution();
 
 		/* DeriveData Debug Area 3 */
+		// std::vector<LabelSeq> H;
+		// H.push_back(deb_generateLabelSeq(2, 1, 2));
+		// H.push_back(deb_generateLabelSeq(2, 3, 4));
+		// H.push_back(deb_generateLabelSeq(3, 1, 1, 4));
+		// H.push_back(deb_generateLabelSeq(3, 2, 2, 3));
+		// H.push_back(deb_generateLabelSeq(1, 1));
+		// H.push_back(deb_generateLabelSeq(1, 2));
+		// std::vector<LabelSeq> Co_ps;
+		// Co_ps.push_back(deb_generateLabelSeq(1, 2));
+		// Co_ps.push_back(deb_generateLabelSeq(1, 4));
+		// std::vector<Complex> h_coef;
+		// h_coef.push_back(Complex(1, 0));
+		// h_coef.push_back(Complex(1, 0));
+		// h_coef.push_back(Complex(1, 0));
+		// h_coef.push_back(Complex(1, 0));
+		// h_coef.push_back(Complex(1, 0));
+		// h_coef.push_back(Complex(1, 0));
+		// std::vector<Complex> c_coef;
+		// c_coef.push_back(Complex(5, 0));
+		// c_coef.push_back(Complex(8, 0));
+		// std::vector<LabelSeq> track;
+		// track.push_back(deb_generateLabelSeq(2, 1, 2));
+		// int maxoplen = 2;
+		// LabelSeq init;
+		// init.push_back(0);
+		// init.push_back(1);
+		// auto outputData = DeriveData::deriveAssign(H, h_coef, Co_ps, c_coef, init, track, maxoplen);
+		//deb_printTree(outputData.trackValueTree);
+		// deb_PrintData(outputData);
+		//for (int i = 0; i < 100000; ++i) {
+		//	auto ans = outputData.calEvolution();
+		//}
+
+		/* DEBUG 06/01/2021 */
 		std::vector<LabelSeq> H;
-		H.push_back(deb_generateLabelSeq(2, 1, 2));
-		H.push_back(deb_generateLabelSeq(2, 3, 4));
-		H.push_back(deb_generateLabelSeq(3, 1, 1, 4));
-		H.push_back(deb_generateLabelSeq(3, 2, 2, 3));
-		H.push_back(deb_generateLabelSeq(1, 1));
-		H.push_back(deb_generateLabelSeq(1, 2));
-		std::vector<LabelSeq> Co_ps;
-		Co_ps.push_back(deb_generateLabelSeq(1, 2));
-		Co_ps.push_back(deb_generateLabelSeq(1, 4));
+		H.push_back(deb_generateLabelSeq(2, 4, 5));
+		H.push_back(deb_generateLabelSeq(2, 3, 6));
+		H.push_back(deb_generateLabelSeq(1, 3));
+		H.push_back(deb_generateLabelSeq(1, 4));
 		std::vector<Complex> h_coef;
-		h_coef.push_back(Complex(1, 0));
-		h_coef.push_back(Complex(1, 0));
-		h_coef.push_back(Complex(1, 0));
-		h_coef.push_back(Complex(1, 0));
-		h_coef.push_back(Complex(1, 0));
-		h_coef.push_back(Complex(1, 0));
+		h_coef.push_back(Complex(0, -1));
+		h_coef.push_back(Complex(0, 1));
+		h_coef.push_back(Complex(0.1, 0));
+		h_coef.push_back(Complex(0.1, 0));
+		std::vector<LabelSeq> Co_ps;
+		Co_ps.push_back(deb_generateLabelSeq(1, 4));
+		Co_ps.push_back(deb_generateLabelSeq(1, 6));
 		std::vector<Complex> c_coef;
-		c_coef.push_back(Complex(5, 0));
-		c_coef.push_back(Complex(8, 0));
-		std::vector<LabelSeq> track;
-		track.push_back(deb_generateLabelSeq(2, 1, 2));
-		//track.push_back(deb_generateLabelSeq(2, 3, 4));
-		int maxoplen = 2;
+		c_coef.push_back(Complex(2, 0));
+		c_coef.push_back(Complex(2, 0));
 		LabelSeq init;
 		init.push_back(0);
-		init.push_back(1);
-		auto outputdata = DeriveData::deriveAssign(H, h_coef, Co_ps, c_coef, init, track, maxoplen);
-		//deb_printTree(outputdata.trackValueTree);
-		deb_printData(outputdata);
-		//for (int i = 0; i < 100000; ++i) {
-		//	auto ans = outputdata.calEvolution();
-		//}
+		init.push_back(0);
+		init.push_back(0);
+		std::vector<LabelSeq> track;
+		track.push_back(deb_generateLabelSeq(2, 3, 4));
+		track.push_back(deb_generateLabelSeq(2, 5, 6));
+		track.push_back(deb_generateLabelSeq(1, 4));
+		track.push_back(deb_generateLabelSeq(1, 6));
+		track.push_back(deb_generateLabelSeq(4, 3, 4, 5, 6));
+		int maxOpLen = 4;
+
+		auto outputData = DeriveData::deriveAssign(H, h_coef, Co_ps, c_coef, init, track, maxOpLen);
+
+		std::cout << "derive finish" << std::endl;
+
+		auto ans = outputData.calEvolution();
 		
+		std::cout << "fine" << std::endl;
 		while(true){}
 	}
-	_CrtDumpMemoryLeaks();
+	// _CrtDumpMemoryLeaks();
 	return 0;
 }

@@ -15,6 +15,8 @@
 #include "deb.h"
 #include "derive_data.h"
 
+#include <cmath>
+
 using namespace ayaji;
 
 #define RAISE_PY_ERROR(err, strerr) do{if (!PyErr_Occurred()){PyErr_SetString(err, strerr);}}while(0)
@@ -28,7 +30,7 @@ void destructDataCapsule(PyObject * capsule) {
 }
 
 int SetCurrentValueOfDData(DeriveData& data, const std::vector<Complex>& vecs) {
-	for (int i = 0; i < __min(data.size, vecs.size()); ++i) {
+	for (int i = 0; i < std::min(std::size_t(data.size), vecs.size()); ++i) {
 		data.curValues[i] = vecs[i];
 	}
 	DeriveData::_UpdateDDTTreeValue(data);
@@ -37,7 +39,7 @@ int SetCurrentValueOfDData(DeriveData& data, const std::vector<Complex>& vecs) {
 
 int SetHOCoefOfDData(DeriveData& data, const std::vector<Complex>& vecs) {
 	Complex temp = { 0,1 };
-	for (int i = 0; i < __min(data.hoSize, vecs.size()); ++i) {
+	for (int i = 0; i < std::min(std::size_t(data.hoSize), vecs.size()); ++i) {
 		data.hoCoefs[i] = vecs[i] * temp;
 	}
 	return 0;
@@ -45,7 +47,7 @@ int SetHOCoefOfDData(DeriveData& data, const std::vector<Complex>& vecs) {
 
 int SetCOCoefOfDData(DeriveData& data, const std::vector<Complex>& vecs) {
 	Complex temp = { (double)0.5, 0 };
-	for (int i = 0; i < __min(data.coSize, vecs.size()); ++i) {
+	for (int i = 0; i < std::min(std::size_t(data.coSize), vecs.size()); ++i) {
 		data.coCoefs[i] = vecs[i] * temp;
 	}
 	return 0;

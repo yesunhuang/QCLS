@@ -8,6 +8,7 @@
  *
  */
 #include "derive_data.h"
+#include <cmath>
 
 namespace ayaji {
 	DeriveData::DeriveData(int capacity, int csize, int hoSize, int coSize) 
@@ -49,7 +50,7 @@ namespace ayaji {
 		if (tmpNode != nullptr && !tmpNode->isZero())
 			return 0;
 		else if (size >= capacity) {
-			reserve(__max(2 * capacity, size + 8));
+			reserve(std::max(2 * capacity, size + 8));
 		}
 
 		curValues[this->size] = c;
@@ -66,7 +67,7 @@ namespace ayaji {
 	}
 
 	int DeriveData::reserve(int newCapacity) {
-		newCapacity = __max(0, newCapacity);
+		newCapacity = std::max(0, newCapacity);
 		if (newCapacity == capacity)
 			return 0;
 		else {
@@ -94,7 +95,7 @@ namespace ayaji {
 
 		int maxn = -1;
 		for (int i = 0; i < len; ++i) {
-			maxn = __max(maxn, seq[i]);
+			maxn = std::max(maxn, seq[i]);
 		}
 		if ((maxn + 1) / 2 - 1 > slen)
 			return Complex(0, 0);
@@ -193,7 +194,7 @@ namespace ayaji {
 		Label maxInitTrackLabel = 0;
 		for (int i = 0; i < inputSeq_Track.size(); ++i) {
 			for (int j = 0; j < inputSeq_Track[i].size(); ++j) {
-				maxInitTrackLabel = __max(maxInitTrackLabel, inputSeq_Track[i][j]);
+				maxInitTrackLabel = std::max(maxInitTrackLabel, inputSeq_Track[i][j]);
 			}
 		}
 		DeriveData output(2, maxInitTrackLabel, inputSeq_HO.size(), inputSeq_CO.size());
@@ -252,7 +253,7 @@ namespace ayaji {
 		Label maxInitTrackLabel = 0;
 		for (int i = 0; i < inputSeq_Track.size(); ++i) {
 			for (int j = 0; j < inputSeq_Track[i].size(); ++j) {
-				maxInitTrackLabel = __max(maxInitTrackLabel, inputSeq_Track[i][j]);
+				maxInitTrackLabel = std::max(maxInitTrackLabel, inputSeq_Track[i][j]);
 			}
 		}
 		DeriveData* poutput = new DeriveData(2, maxInitTrackLabel, inputSeq_HO.size(), inputSeq_CO.size());
@@ -352,6 +353,7 @@ namespace ayaji {
 			/* 两树相减 */
 			AO_Tree.eachNode(nullptr, ClusterExp::_NegateNode);
 			OA_Tree.add(AO_Tree);
+			OA_Tree.normalize();
 			//PrintOPTree(OA_Tree);
 
 			/* 去除长度超过范围的 */
@@ -414,6 +416,7 @@ namespace ayaji {
 			AOdO_Tree.eachNode(nullptr, ClusterExp::_NegateNode);
 			OdAO_Tree.add(OdOA_Tree);
 			OdAO_Tree.add(AOdO_Tree);
+			OdAO_Tree.normalize();
 
 			/* 去除长度超过范围的 */
 			/* TODO: 这个方法很蠢,日后需要优化 */

@@ -13,3 +13,6 @@ testpypi:
 	
 pypi:
 	python -m twine upload --repository pypi dist/*
+
+bin-test:
+	$(CC) -o
