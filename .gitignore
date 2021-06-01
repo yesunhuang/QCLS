@@ -173,3 +173,4 @@ CMakeCache.txt
 CMakeFiles/
 *.cmake
 test
+QCLSolver/core/Makefile

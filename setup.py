@@ -24,7 +24,7 @@ with open('requirements.txt', 'r', encoding='utf-8') as fp:
         requirements.append(s.strip())
 
 setup(name="QCLSolver",
-      version="1.0.4",
+      version="1.0.6",
       description="A tool for cluster expansion solver.",
       long_description=long_description,
       long_description_content_type="text/markdown",

@@ -6,7 +6,7 @@ require:
 
 dist:
 	python setup.py sdist
-	python setup.py bdist_wheel
+	#python setup.py bdist_wheel
 	
 testpypi:
 	python -m twine upload --repository testpypi dist/*
@@ -14,5 +14,3 @@ testpypi:
 pypi:
 	python -m twine upload --repository pypi dist/*
 
-bin-test:
-	$(CC) -o
