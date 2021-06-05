@@ -1,13 +1,13 @@
 {% set name = "QCLSolver" %}
-{% set version = "1.0.4" %}
+{% set version = "1.0.5" %}
 
 package:
   name: "{{ name|lower }}"
   version: "{{ version }}"
 
 source:
-  url: https://pypi.io/packages/source/Q/QCLSolver/QCLSolver-1.0.4.tar.gz
-  sha256: 147651b48b248767ff074339d2c418a4fcf03b2974b4363b8dd42a36c63ce973
+  url: https://files.pythonhosted.org/packages/1f/c6/f76f848ebbcb75f4c3a02caf17f75d02f6697137bd38933b49cb4b7fce15/QCLSolver-1.0.5.tar.gz
+  sha256: 7e28a363ef2b115c55b800da97cf1a79928b5cf898e2b68a56fee8b268db10db
 
 build:
   number: 0
@@ -17,11 +17,11 @@ requirements:
   host:
     - numpy >=1.16.5
     - pip
-    - python
+    - python 
     - scipy >=1.4.1
   run:
     - numpy >=1.16.5
-    - python
+    - python 
     - scipy >=1.4.1
 
 test:
