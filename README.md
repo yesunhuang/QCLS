@@ -339,8 +339,6 @@ This function is used to investigate cluster expansion.
 
 * Check out the source codes and the jupyter notebook files.
 
-* See also the published paper.
+* See also the [paper](http://arxiv.org/abs/2111.09557) on arxiv.
 
 * If your are interesting in the implement, check up the *ImplementDetail* pdfs. (Warm prompt: those files are so messy and suck.)
-
-
