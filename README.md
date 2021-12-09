@@ -54,7 +54,7 @@ from QCLSolver.tool import*
 
 ## Genernal procedure
 
-Using `QCLS` is quite similar to using the `mesolve` in `QuTip`, a quite simple procedure can be followed:
+Using `QCLS` is quite similar to using the `mesolve` in [*QuTiP*](https://qutip.org/), a quite simple procedure can be followed:
 
 * Create lists for representing the Hamiltonian, collapse operators and the initial state. Determine the tracking operators and the required cluster-expansion order.
 
@@ -274,14 +274,14 @@ plt.show()
 
   ​	2.Initial_State: A list for representing the initial state.
 
-  ​	3.other paramters: the same as the parameters requested by `solve_ivp` from *Scipy*
+  ​	3.other paramters: the same as the parameters requested by `solve_ivp` from [*SciPy*](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html)
 
 * Return:
 
-  The same as the parameters requested by `solve_ivp` from *Scipy*. The result of y will be returned at the same order of the operators in T_o.
+  The same as the parameters requested by `solve_ivp` from *SciPy*. The result of y will be returned at the same order of the operators in T_o.
 
 * Advanced
-  * If u wanna use another solver, u need to implement a convert function following the examples above.
+  * If u wanna use another solver, u need to implement a convert function following the examples as follows.
 
   ```python
   def ConvertToSolver(t,y,data):
@@ -337,8 +337,8 @@ This function is used to investigate cluster expansion.
   
 ## More Information
 
-* Check out the source codes and the jupyter notebook files.
+* Check out the source codes and the jupyter notebook files. 
 
-* See also the [paper](http://arxiv.org/abs/2111.09557) on arxiv.
+* See also the paper [ *"Classical-to-quantum transition in multimode nonlinear systems with strong photon-photon coupling"*](http://arxiv.org/abs/2111.09557) on arxiv.
 
-* If your are interesting in the implement, check up the *ImplementDetail* pdfs. (Warm prompt: those files are so messy and suck.)
+* If you are interesting in the implement, check up the *ImplementDetail* pdfs as well as the old [public archive](https://github.com/yesunhuang/Cluster-expansion-approach-for-quantum-calculation). (Warm prompt: those files are so messy.)
