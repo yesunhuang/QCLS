@@ -69,7 +69,7 @@ Using `QCLS` is quite similar to using the `mesolve` in [*QuTiP*](https://qutip.
 
 ## Quick Example
 
-The following code shows how to use `QCLS` to simulate the *Janes-Cumming model*. (See also the same title notebooks from *Quantum mechanics lectures with QuTiP*)
+The following code shows how to use `QCLS` to simulate the *Janes-Cumming model*. (See also the same title notebooks from [*Quantum mechanics lectures with QuTiP*](https://nbviewer.ipython.org/github/jrjohansson/qutip-lectures/blob/master/Lecture-1-Jaynes-Cumming-model.ipynb))
 
 The Hamiltonian can be expressed as
 
