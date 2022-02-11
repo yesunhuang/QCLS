@@ -1,4 +1,10 @@
 # Quick guide to QCLS
+
+[![pypi package version badge](https://img.shields.io/pypi/v/QCLSolver)](https://pypi.org/project/QCLSolver/)
+[![license badge](https://img.shields.io/github/license/yesunhuang/QCLS)](https://github.com/yesunhuang/QCLS/blob/main/LICENSE)
+[![arXiv](https://img.shields.io/badge/arXiv-2111.09557-brightgreen.svg)](https://arxiv.org/abs/2111.09557)
+[![star badge](https://img.shields.io/github/stars/yesunhuang/QCLS?style=social)](https://github.com/yesunhuang/QCLS)
+
 QCLS: Cluster Expansion Based Solver for Open Quantum System
 
 ## Install
@@ -325,6 +331,7 @@ This function is used to investigate cluster expansion.
 
   ```python
   def cluster_expansion(op: str, max_op_len: int = 5) -> Tuple[List[int], Dict[str, int], List[Tuple[complex, Tuple[int]]]]:
+  ```
 * Parameters
 
   ​	1.op: The string representation of operator.
