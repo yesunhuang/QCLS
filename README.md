@@ -346,6 +346,6 @@ This function is used to investigate cluster expansion.
 
 * Check out the source codes and the jupyter notebook files. 
 
-* See also the paper [ *"Classical-to-quantum transition in multimode nonlinear systems with strong photon-photon coupling"*](http://arxiv.org/abs/2111.09557) on arxiv.
+* See also the published paper [ *"Classical-to-quantum transition in multimode nonlinear systems with strong photon-photon coupling"*](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.043707) on *Physical Review A*.
 
 * If you are interesting in the implement, check up the *ImplementDetail* pdfs as well as the old [public archive](https://github.com/yesunhuang/Cluster-expansion-approach-for-quantum-calculation). (Warm prompt: those files are so messy.)
